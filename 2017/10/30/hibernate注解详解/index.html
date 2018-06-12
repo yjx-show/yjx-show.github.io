@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="baidu-site-verification" content="L6Lm9d5Crl"/>
+  
+  
+  
+  
+  <title>Hibernate注解详解 | 杨俊雄</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Hibernate注解详解： 红黑树">
+<meta name="keywords" content="数据库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hibernate注解详解">
+<meta property="og:url" content="http://yoursite.com/2017/10/30/hibernate注解详解/index.html">
+<meta property="og:site_name" content="杨俊雄">
+<meta property="og:description" content="Hibernate注解详解： 红黑树">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-06-12T13:59:12.985Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hibernate注解详解">
+<meta name="twitter:description" content="Hibernate注解详解： 红黑树">
+  
+    <link rel="alternative" href="/atom.xml" title="杨俊雄" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/avatar.png" class="js-avatar">
+            
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">杨俊雄</a></h1>
+        </hgroup>
+        
+        <p class="header-subtitle">心动</p>
+        
+        
+            <form>
+                <input type="text" class="st-default-search-input search" id="local-search-input" placeholder="搜索一下" autocomplete="off">
+            </form>
+            <div id="local-search-result"></div>
+        
+        
+            <script type="text/javascript">
+                (function() {
+                    'use strict';
+                    function getMatchData(keyword, data) {
+                        var matchData = [];
+                        for(var i =0;i<data.length;i++){
+                            if(data[i].title.toLowerCase().indexOf(keyword)>=0) 
+                                matchData.push(data[i])
+                        }
+                        return matchData;
+                    }
+                    var $input = $('#local-search-input');
+                    var $resultContent = $('#local-search-result');
+                    $input.keyup(function(){
+                        $.ajax({
+                            url: '/search.json',
+                            dataType: "json",
+                            success: function( json ) {
+                                var str='<ul class=\"search-result-list\">';                
+                                var keyword = $input.val().trim().toLowerCase();
+                                $resultContent.innerHTML = "";
+                                if ($input.val().trim().length <= 0) {
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                }
+                                var results = getMatchData(keyword, json);
+                                if(results.length === 0){
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                } 
+                                for(var i =0; i<results.length; i++){
+                                    str += "<li><a href='"+ results[i].url +"' class='search-result-title'>"+ results[i].title +"</a></li>";
+                                }
+                                str += "</ul>";
+                                $resultContent.empty();
+                                $resultContent.append(str);
+                                $('#switch-area').hide();
+                            }
+                        });
+                    });
+                })();
+            </script>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a  href="/archives/">主页</a></li>
+                        
+                            <li><a  href="/archives/">所有文章</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl github"  target="_blank" href="https://github.com/yjx-show/yjx-show.github.io.git" title="github">github</a>
+                            
+                                <a class="fl qq"  target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=492038605&site=qq&menu=yes" title="qq">qq</a>
+                            
+                                <a class="fl mail"  target="_blank" href="mailto:492038605@qq.com" title="mail">mail</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/数据库/" style="font-size: 10px;">数据库</a>
+                    </div>
+                </section>
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://www.jianshu.com/u/8569a7d98427">简书</a>
+                    
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">还是熟悉的味道               很高兴遇见你!</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">杨俊雄</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/avatar.png" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">杨俊雄</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">心动</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="github" target="_blank" href="https://github.com/yjx-show/yjx-show.github.io.git" title="github">github</a>
+                    
+                        <a class="qq" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=492038605&site=qq&menu=yes" title="qq">qq</a>
+                    
+                        <a class="mail" target="_blank" href="mailto:492038605@qq.com" title="mail">mail</a>
+                    
+                </div>
+            </nav>
+        </header>
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-hibernate注解详解" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2017/10/30/hibernate注解详解/" class="article-date">
+      <time datetime="2017-10-30T14:35:37.000Z" itemprop="datePublished">2017-10-30</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Hibernate注解详解
+    </h1>
+  
+
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/SQL/">SQL</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据库/">数据库</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><strong> Hibernate注解详解：</strong> <excerpt in="" index="" |="" 首页摘要=""><br>红黑树<br><a id="more"></a></excerpt></p>
+<p><the rest="" of="" contents="" |="" 余下全文=""><br>正文……</the></p>
+<h1 id="一-什么是Hibernate注解"><a href="#一-什么是Hibernate注解" class="headerlink" title="一. 什么是Hibernate注解?"></a>一. 什么是Hibernate注解?</h1><pre><code>解析：来源：Hibernate提供了Hibernate Annotations扩展包，它可以替换复杂
+的hbm.xml文件（ Annotations扩展包是hibernate-annotation-3.4.0GA.zip）
+</code></pre><h1 id="二-注解配置持久化类常用注解"><a href="#二-注解配置持久化类常用注解" class="headerlink" title="二. 注解配置持久化类常用注解."></a>二. 注解配置持久化类常用注解.</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">   注解　　　　　  　 含义和作用　　　　　　　　　　　　　　</span><br><span class="line">@Entity	　　       将一个类声明为一个持久化类</span><br><span class="line">@Id	　         声明了持久化类的标识属性（相当于数据表的主键）</span><br><span class="line">@GeneratedValue    定义标识属性值的生成策略</span><br><span class="line">@Table	　　       为持久化类映射指定表（table）、目录（catalog）和schema的名称。默认值，持久化类名，不带包名</span><br><span class="line">@UniqueConstraint　定义表的唯一约束</span><br><span class="line">@Lob	　       　表示属性将被持久化为Blob或者Clob类型</span><br><span class="line">@Column	　       　将属性映射到列</span><br><span class="line">@Transient       　忽略这些字段和属性，不用持久化到数据库</span><br></pre></td></tr></table></figure>
+<h1 id="三-注解配置对象关联关系"><a href="#三-注解配置对象关联关系" class="headerlink" title="三 注解配置对象关联关系."></a>三 注解配置对象关联关系.</h1><h2 id="1-OneToMany-and-ManyToOne（建立双向关联一对多）"><a href="#1-OneToMany-and-ManyToOne（建立双向关联一对多）" class="headerlink" title="(1)     @OneToMany  and @ManyToOne（建立双向关联一对多）"></a>(1)     @OneToMany  and @ManyToOne（建立双向关联一对多）</h2><h3 id="User-java类注解写法-一对多的一方"><a href="#User-java类注解写法-一对多的一方" class="headerlink" title="User.java类注解写法(一对多的一方)"></a>User.java类注解写法(一对多的一方)</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">import org.hibernate.annotations.Cascade;</span><br><span class="line">import org.hibernate.annotations.CascadeType;</span><br><span class="line">import javax.persistence.Entity;</span><br><span class="line">import javax.persistence.Id;</span><br><span class="line">import javax.persistence.OneToMany;</span><br><span class="line">import javax.persistence.Table;</span><br><span class="line">import java.util.HashSet;</span><br><span class="line">import java.util.Set;</span><br><span class="line"></span><br><span class="line">@Entity</span><br><span class="line">@Table(name = <span class="string">"user"</span>)</span><br><span class="line">public class User &#123;</span><br><span class="line">    @Id</span><br><span class="line">    private Integer id;</span><br><span class="line">    private String username;</span><br><span class="line">    private String password;</span><br><span class="line"></span><br><span class="line">    @OneToMany(targetEntity = Product.class, mappedBy = <span class="string">"u"</span>)</span><br><span class="line">    @Cascade(CascadeType.ALL)</span><br><span class="line">    private Set&lt;Product&gt; products = new HashSet&lt;Product&gt;();</span><br><span class="line">    </span><br><span class="line">    //get和<span class="built_in">set</span> 方法要写</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Product-java类注解写法-一对多的多方"><a href="#Product-java类注解写法-一对多的多方" class="headerlink" title="Product.java类注解写法(一对多的多方)"></a>Product.java类注解写法(一对多的多方)</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import javax.persistence.*;</span><br><span class="line">@Entity</span><br><span class="line">@Table(name = <span class="string">"product"</span>)</span><br><span class="line">public class Product &#123;</span><br><span class="line">    @Id</span><br><span class="line">    @GeneratedValue(strategy = GenerationType.IDENTITY)</span><br><span class="line">    private Integer id;</span><br><span class="line">    private Integer count;</span><br><span class="line">    private String name;</span><br><span class="line">    private double price;</span><br><span class="line"></span><br><span class="line">    @ManyToOne(targetEntity = User.class)</span><br><span class="line">    private User u;</span><br><span class="line">    //get和<span class="built_in">set</span> 方法要写</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="非注解例子配置-hibernate-hbm-xml-User-hbm-xml-Prouct-hbm-xml一对多配置"><a href="#非注解例子配置-hibernate-hbm-xml-User-hbm-xml-Prouct-hbm-xml一对多配置" class="headerlink" title="非注解例子配置 :hibernate.hbm.xml   User.hbm.xml   Prouct.hbm.xml一对多配置"></a>非注解例子配置 :hibernate.hbm.xml   User.hbm.xml   Prouct.hbm.xml一对多配置</h1><h2 id="hibernate-hbm-xml-基本配置"><a href="#hibernate-hbm-xml-基本配置" class="headerlink" title="hibernate.hbm.xml 基本配置"></a>hibernate.hbm.xml 基本配置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span>?&gt;</span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE hibernate-configuration PUBLIC</span><br><span class="line">        <span class="string">"-//Hibernate/Hibernate Configuration DTD 3.0//EN"</span></span><br><span class="line">        <span class="string">"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd"</span>&gt;</span><br><span class="line"></span><br><span class="line">&lt;hibernate-configuration&gt;</span><br><span class="line"></span><br><span class="line">    &lt;session-factory&gt;</span><br><span class="line">        &lt;!-- 配置关于数据库连接的四个项 driverClass url username password --&gt;</span><br><span class="line">        &lt;property name=<span class="string">"hibernate.connection.driver_class"</span>&gt;com.mysql.jdbc.Driver&lt;/property&gt;</span><br><span class="line">        &lt;property name=<span class="string">"hibernate.connection.url"</span>&gt;jdbc:mysql:///exam&lt;/property&gt;</span><br><span class="line">        &lt;property name=<span class="string">"hibernate.connection.username"</span>&gt;root&lt;/property&gt;</span><br><span class="line">        &lt;property name=<span class="string">"hibernate.connection.password"</span>&gt;123&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--         设置连接提供者--&gt;</span><br><span class="line">        &lt;property name=<span class="string">"hibernate.connection.provider_class"</span>&gt;org.hibernate.connection.C3P0ConnectionProvider&lt;/property&gt;</span><br><span class="line">&lt;!--         c3p0连接池的配置--&gt;</span><br><span class="line">        &lt;property name=<span class="string">"hibernate.c3p0.max_size"</span>&gt;20&lt;/property&gt;  &lt;!--最大连接池--&gt;</span><br><span class="line">        &lt;property name=<span class="string">"hibernate.c3p0.min_size"</span>&gt;5&lt;/property&gt;  &lt;!--最小连接数--&gt;</span><br><span class="line">        &lt;property name=<span class="string">"hibernate.c3p0.timeout"</span>&gt;120&lt;/property&gt; &lt;!-- 超时--&gt;</span><br><span class="line">        &lt;property name=<span class="string">"hibernate.c3p0.idle_test_period"</span>&gt;3000&lt;/property&gt; &lt;!-- 空闲连接 --&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!-- 可以将向数据库发送的sql显示出来 --&gt;</span><br><span class="line">        &lt;property name=<span class="string">"hibernate.show_sql"</span>&gt;<span class="literal">true</span>&lt;/property&gt;</span><br><span class="line">        &lt;!-- 格式化sql --&gt;</span><br><span class="line">        &lt;property name=<span class="string">"hibernate.format_sql"</span>&gt;<span class="literal">true</span>&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!-- hibernate的方言 --&gt;</span><br><span class="line">        &lt;property name=<span class="string">"hibernate.dialect"</span>&gt;org.hibernate.dialect.MySQLDialect&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!-- 自动创建表 --&gt;</span><br><span class="line">&lt;!--        &lt;property name=<span class="string">"hibernate.hbm2ddl.auto"</span>&gt;update&lt;/property&gt;--&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!-- 用于设置事务提交方式 --&gt;</span><br><span class="line">        &lt;property name=<span class="string">"hibernate.connection.autocommit"</span>&gt;<span class="literal">false</span>&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!-- 配置hibernate的映射文件所在位置 --&gt;</span><br><span class="line">        &lt;!--&lt;mapping resource=<span class="string">"com/starting/domain/User.hbm.xml"</span>/&gt;</span><br><span class="line">        &lt;mapping resource=<span class="string">"com/starting/domain/Product.hbm.xml"</span>/&gt;--&gt;</span><br><span class="line">        &lt;mapping class=<span class="string">"com.starting.domain.Product"</span>/&gt;</span><br><span class="line">        &lt;mapping class=<span class="string">"com.starting.domain.User"</span>/&gt;</span><br><span class="line">    &lt;/session-factory&gt;</span><br><span class="line"></span><br><span class="line">&lt;/hibernate-configuration&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="User-hbm-xml-非注解例子-一对多"><a href="#User-hbm-xml-非注解例子-一对多" class="headerlink" title="User.hbm.xml   非注解例子(一对多)"></a>User.hbm.xml   非注解例子(一对多)</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span>?&gt;</span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE hibernate-mapping PUBLIC</span><br><span class="line">        <span class="string">"-//Hibernate/Hibernate Mapping DTD 3.0//EN"</span></span><br><span class="line">        <span class="string">"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"</span>&gt;</span><br><span class="line"></span><br><span class="line">&lt;hibernate-mapping package=<span class="string">"com.starting.domain"</span>&gt;</span><br><span class="line">    &lt;!-- name属性它是实体类的全名 table 表的名称 catalog 数据库名称 --&gt;</span><br><span class="line">    &lt;class name=<span class="string">"User"</span> table=<span class="string">"user"</span> catalog=<span class="string">"exam"</span> lazy=<span class="string">"true"</span>&gt;</span><br><span class="line">        &lt;!-- id它是用于描述主键 --&gt;</span><br><span class="line">        &lt;id name=<span class="string">"id"</span> column=<span class="string">"id"</span> <span class="built_in">type</span>=<span class="string">"int"</span>&gt;  &lt;!-- java数据类型 --&gt;</span><br><span class="line">            &lt;!-- 主键生成策略 --&gt;</span><br><span class="line">            &lt;generator class=<span class="string">"native"</span>&gt;</span><br><span class="line">                &lt;!-- &lt;param name=<span class="string">"sequence"</span>&gt;序列名称&lt;/param&gt; --&gt; &lt;!-- 在oracle中创建序列 create sequence 序列名称; --&gt;</span><br><span class="line">            &lt;/generator&gt;  &lt;!-- 默认使用的序列是 hibernate_id --&gt;</span><br><span class="line">        &lt;/id&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!-- 使用property来描述属性与字段的对应关系 --&gt;</span><br><span class="line">        &lt;property name=<span class="string">"username"</span> column=<span class="string">"username"</span> length=<span class="string">"50"</span> <span class="built_in">type</span>=<span class="string">"string"</span>/&gt;</span><br><span class="line">        &lt;property name=<span class="string">"password"</span> column=<span class="string">"password"</span> length=<span class="string">"100"</span> <span class="built_in">type</span>=<span class="string">"string"</span>/&gt;</span><br><span class="line">    &lt;/class&gt;</span><br><span class="line"></span><br><span class="line">&lt;/hibernate-mapping&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="Prouct-hbm-xml配置"><a href="#Prouct-hbm-xml配置" class="headerlink" title="Prouct.hbm.xml配置"></a>Prouct.hbm.xml配置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span>?&gt;</span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE hibernate-configuration PUBLIC</span><br><span class="line">        <span class="string">"-//Hibernate/Hibernate Configuration DTD 3.0//EN"</span></span><br><span class="line">        <span class="string">"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd"</span>&gt;</span><br><span class="line"></span><br><span class="line">&lt;hibernate-configuration&gt;</span><br><span class="line"></span><br><span class="line">    &lt;session-factory&gt;</span><br><span class="line">        &lt;!-- 配置关于数据库连接的四个项 driverClass url username password --&gt;</span><br><span class="line">        &lt;property name=<span class="string">"hibernate.connection.driver_class"</span>&gt;com.mysql.jdbc.Driver&lt;/property&gt;</span><br><span class="line">        &lt;property name=<span class="string">"hibernate.connection.url"</span>&gt;jdbc:mysql:///exam&lt;/property&gt;</span><br><span class="line">        &lt;property name=<span class="string">"hibernate.connection.username"</span>&gt;root&lt;/property&gt;</span><br><span class="line">        &lt;property name=<span class="string">"hibernate.connection.password"</span>&gt;123&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--         设置连接提供者--&gt;</span><br><span class="line">        &lt;property name=<span class="string">"hibernate.connection.provider_class"</span>&gt;org.hibernate.connection.C3P0ConnectionProvider&lt;/property&gt;</span><br><span class="line">&lt;!--         c3p0连接池的配置--&gt;</span><br><span class="line">        &lt;property name=<span class="string">"hibernate.c3p0.max_size"</span>&gt;20&lt;/property&gt;  &lt;!--最大连接池--&gt;</span><br><span class="line">        &lt;property name=<span class="string">"hibernate.c3p0.min_size"</span>&gt;5&lt;/property&gt;  &lt;!--最小连接数--&gt;</span><br><span class="line">        &lt;property name=<span class="string">"hibernate.c3p0.timeout"</span>&gt;120&lt;/property&gt; &lt;!-- 超时--&gt;</span><br><span class="line">        &lt;property name=<span class="string">"hibernate.c3p0.idle_test_period"</span>&gt;3000&lt;/property&gt; &lt;!-- 空闲连接 --&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!-- 可以将向数据库发送的sql显示出来 --&gt;</span><br><span class="line">        &lt;property name=<span class="string">"hibernate.show_sql"</span>&gt;<span class="literal">true</span>&lt;/property&gt;</span><br><span class="line">        &lt;!-- 格式化sql --&gt;</span><br><span class="line">        &lt;property name=<span class="string">"hibernate.format_sql"</span>&gt;<span class="literal">true</span>&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!-- hibernate的方言 --&gt;</span><br><span class="line">        &lt;property name=<span class="string">"hibernate.dialect"</span>&gt;org.hibernate.dialect.MySQLDialect&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!-- 自动创建表 --&gt;</span><br><span class="line">&lt;!--        &lt;property name=<span class="string">"hibernate.hbm2ddl.auto"</span>&gt;update&lt;/property&gt;--&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!-- 用于设置事务提交方式 --&gt;</span><br><span class="line">        &lt;property name=<span class="string">"hibernate.connection.autocommit"</span>&gt;<span class="literal">false</span>&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!-- 配置hibernate的映射文件所在位置 --&gt;&lt;!--此处是非注解加载Bean类映射的例子 </span><br><span class="line">         必需在User.java或者Product.java同级目录下建立User.hbm.xml和Product.hbm.xml配置文件--&gt;</span><br><span class="line">        &lt;!--&lt;mapping resource=<span class="string">"com/starting/domain/User.hbm.xml"</span>/&gt;</span><br><span class="line">        &lt;mapping resource=<span class="string">"com/starting/domain/Product.hbm.xml"</span>/&gt;--&gt;</span><br><span class="line">        </span><br><span class="line">        &lt;!-- 配置hibernate的映射文件所在位置 --&gt;&lt;!--此处注解加载Bean类映射的例子 </span><br><span class="line">         不需要写User.hbm.xml和Product.hbm.xml--&gt;</span><br><span class="line">        &lt;mapping class=<span class="string">"com.starting.domain.Product"</span>/&gt;</span><br><span class="line">        &lt;mapping class=<span class="string">"com.starting.domain.User"</span>/&gt;</span><br><span class="line">    &lt;/session-factory&gt;</span><br><span class="line"></span><br><span class="line">&lt;/hibernate-configuration&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="Hibernate注解使用方法总结-重点"><a href="#Hibernate注解使用方法总结-重点" class="headerlink" title="Hibernate注解使用方法总结(重点)"></a>Hibernate注解使用方法总结(重点)</h1><ol>
+<li><p>类级别注解</p>
+<p>@Entity     映射实体类</p>
+<p>@Table    映射数句库表</p>
+<p>@Entity(name=”tableName”) - 必须，注解将一个类声明为一个实体bean。</p>
+</li>
+</ol>
+<p>属性：</p>
+<pre><code>name - 可选，对应数据库中的一个表。若表名与实体类名相同，则可以省略。
+
+
+
+@Table(name=&quot;&quot;,catalog=&quot;&quot;,schema=&quot;&quot;)  - 可选，通常和@Entity 配合使用，只能标注在实  体的 class 定义处，表示实体对应的数据库表的信息。
+</code></pre><p>属性：</p>
+<pre><code>name - 可选，表示表的名称，默认地，表名和实体名称一致，只有在不一致的情况下才需            要指定表名
+
+catalog - 可选，表示Catalog名称，默认为 Catalog(&quot;&quot;).
+
+schema - 可选 , 表示 Schema 名称 , 默认为Schema(&quot;&quot;).
+</code></pre><ol start="2">
+<li><p>属性级别注解</p>
+<p> @Id     映射生成主键</p>
+<p> @Version    定义乐观锁</p>
+<p> @Column     映射表的列</p>
+<p> @Transient     定义暂态属性  </p>
+</li>
+</ol>
+<p>2.1 与主键相关注解</p>
+<pre><code>@Id - 必须，定义了映射到数据库表的主键的属性，一个实体只能有一个属性被映射为主  键，置于 getXxxx() 前。
+@GeneratedValue(strategy=GenerationType,generator=&quot;&quot;) - 可选，用于定义主键生成策略。
+</code></pre><p>属性：</p>
+<pre><code>Strategy - 表示主键生成策略，取值有：
+
+GenerationType.AUTO - 根据底层数据库自动选择（默认），若数据库支持自动              增                                       长类型，则为自动增长。
+
+GenerationType.INDENTITY - 根据数据库的Identity字段生成，支持DB2、MySQL、                                        MS、SQL Server、SyBase与HyperanoicSQL数据库的Identity                                          类型主键。
+
+GenerationType.SEQUENCE - 使用Sequence来决定主键的取值，适合Oracle、DB2等                                      支持Sequence的数据库，一般结合@SequenceGenerator使用。
+
+(Oracle没有自动增长类型，只能用Sequence)
+
+GenerationType.TABLE  - 使用指定表来决定主键取值，结合@TableGenerator使用。
+</code></pre><p>如：</p>
+<pre><code>@Id
+
+@TableGenerator(name=&quot;tab_cat_gen&quot;,allocationSize=1)
+
+@GeneratedValue(Strategy=GenerationType.Table)
+
+Generator - 表示主键生成器的名称，这个属性通常和ORM框架相关 , 例如：
+
+Hibernate 可以指定 uuid 等主键生成方式
+
+@SequenceGenerator — 注解声明了一个数据库序列。
+</code></pre><p>属性：</p>
+<pre><code>name - 表示该表主键生成策略名称，它被引用在@GeneratedValue中设置的“gernerator”值中。
+sequenceName - 表示生成策略用到的数据库序列名称。
+initialValue - 表示主键初始值，默认为0.
+allocationSize - 每次主键值增加的大小，例如设置成1，则表示每次创建新记录后自动加1，默认为50.
+</code></pre><p>示例 :<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@Id</span><br><span class="line">@GeneratedValues(strategy=StrategyType.SEQUENCE)</span><br><span class="line">public int <span class="function"><span class="title">getPk</span></span>() &#123;</span><br><span class="line">   <span class="built_in">return</span> pk;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p> 2.2  与非主键相关注解</p>
+<pre><code>@Version - 可以在实体bean中使用@Version注解,通过这种方式可添加对乐观锁定的支持
+
+@Basic - 用于声明属性的存取策略：
+
+@Basic(fetch=FetchType.EAGER)   即时获取（默认的存取策略）
+
+@Basic(fetch=FetchType.LAZY)    延迟获取
+
+
+
+@Temporal - 用于定义映射到数据库的时间精度：
+
+@Temporal(TemporalType=DATE)       日期
+
+@Temporal(TemporalType=TIME)       时间
+
+@Temporal(TemporalType=TIMESTAMP) 两者兼具
+
+@Column - 可将属性映射到列，使用该注解来覆盖默认值，
+@Column描述了数据库表中           该字段的详细定义，这对于根据 JPA 注解生成数据库表结构的工具非常有作用。
+</code></pre><p> 属性：</p>
+<pre><code>name - 可选，表示数据库表中该字段的名称，默认情形属性名称一致
+
+nullable -可选，表示该字段是否允许为 null，默认为true
+
+ unique - 可选，表示该字段是否是唯一标识，默认为 false
+
+ length - 可选，表示该字段的大小，仅对 String 类型的字段有效，默认值255.
+
+ insertable -可选，表示在ORM框架执行插入操作时，该字段是否应出现INSETRT              语句中，默认为 true
+
+ updateable -可选，表示在ORM 框架执行更新操作时，该字段是否应该出现在               UPDATE语句中，默认为 true. 对于一经创建就不可以更改的字段，该          属性非常有用，如对于 birthday字段。
+
+ columnDefinition - 可选，表示该字段在数据库中的实际类型。通常ORM框架可以根    据属性类型自动判断数据库中字段的类型，但是对于Date类型仍无法确定数据      库中字段类型究竟是 DATE,TIME还是 TIMESTAMP. 此外 ,String 的默认映射类型为VARCHAR, 如果要将 String 类型映射到特定数据库的 BLOB或 TEXT字段类型，该属性非常有用。
+</code></pre><p> 示例 :</p>
+<pre><code> @Column(name=&quot;BIRTH&quot;,nullable=&quot;false&quot;,columnDefinition=&quot;DATE&quot;)
+
+ public String getBithday() {
+
+    return birthday;
+
+ }
+
+@Transient - 可选，表示该属性并非一个到数据库表的字段的映射，ORM框架将忽略该属性，如果一个属性并非数据库表的字段映射，就务必将其标示为@Transient，否则ORM 框架默认其注解为 @Basic
+</code></pre><p> 示例 :<br> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 根据 birth 计算出 age 属性</span><br><span class="line">@Transient</span><br><span class="line">public int <span class="function"><span class="title">getAge</span></span>() &#123;</span><br><span class="line">   <span class="built_in">return</span> getYear(new Date()) - getYear(birth);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<pre><code>Hibernate的访问类型为field时，在字段上进行注解声；
+
+访问类型为property时，在getter方法上进行注释声明。
+</code></pre><p>2.2  与非主键相关注解</p>
+<pre><code>@Version - 可以在实体bean中使用@Version注解,通过这种方式可添加对乐观锁定的支持
+
+@Basic - 用于声明属性的存取策略：
+
+@Basic(fetch=FetchType.EAGER)   即时获取（默认的存取策略）
+
+@Basic(fetch=FetchType.LAZY)    延迟获取
+
+
+@Temporal - 用于定义映射到数据库的时间精度：
+
+@Temporal(TemporalType=DATE)       日期
+
+@Temporal(TemporalType=TIME)       时间
+
+@Temporal(TemporalType=TIMESTAMP) 两者兼具
+
+@Column - 可将属性映射到列，使用该注解来覆盖默认值，
+
+@Column描述了数据库表中           该字段的详细定义，这对于根据 JPA 注解生成数据库表结构的工具非常有作用。
+</code></pre><p>属性：</p>
+<pre><code>name - 可选，表示数据库表中该字段的名称，默认情形属性名称一致
+
+nullable -可选，表示该字段是否允许为 null，默认为true
+
+unique - 可选，表示该字段是否是唯一标识，默认为 false
+
+length - 可选，表示该字段的大小，仅对 String 类型的字段有效，默认值255.
+
+insertable -可选，表示在ORM框架执行插入操作时，该字段是否应出现INSETRT              语句中，默认为 true
+
+updateable -可选，表示在ORM 框架执行更新操作时，该字段是否应该出现在               UPDATE语句中，默认为 true. 对于一经创建就不可以更改的字段，该          属性非常有用，如对于 birthday字段。
+
+columnDefinition - 可选，表示该字段在数据库中的实际类型。通常ORM框架可以根    据属性类型自动判断数据库中字段的类型，但是对于Date类型仍无法确定数据      库中字段类型究竟是 DATE,TIME还是 TIMESTAMP. 此外 ,String 的默认映射类型为VARCHAR, 如果要将 String 类型映射到特定数据库的 BLOB或 TEXT字段类型，该属性非常有用。
+</code></pre><p>示例 :</p>
+<pre><code class="bash">@Column(name=<span class="string">"BIRTH"</span>,nullable=<span class="string">"false"</span>,columnDefinition=<span class="string">"DATE"</span>)
+public String <span class="function"><span class="title">getBithday</span></span>() {
+   <span class="built_in">return</span> birthday;
+}
+</code></pre>
+<pre><code>@Transient - 可选，表示该属性并非一个到数据库表的字段的映射，ORM框架将忽略该属性，如果一个属性并非数据库表的字段映射，就务必将其标示为@Transient，否则ORM 框架默认其注解为 @Basic
+</code></pre><p>示例 :</p>
+<pre><code class="bash">// 根据 birth 计算出 age 属性
+@Transient
+public int <span class="function"><span class="title">getAge</span></span>() {
+   <span class="built_in">return</span> getYear(new Date()) - getYear(birth);
+}
+</code></pre>
+<p>2.3 无注解属性的默认值</p>
+<pre><code>如果属性为单一类型,则映射为@Basic，
+
+否则,如果属性对应的类型定义了@Embeddable注解,则映射为@Embedded，
+
+否则,如果属性对应的类型实现了Serializable, 则属性被映射为@Basic并在一个列中保存该对象的serialized版本，
+
+否则,如果该属性的类型为java.sql.Clob或 java.sql.Blob,则作为@Lob并映射到适当的LobType.。
+</code></pre><p>3.映射继承关系</p>
+<pre><code>@Inheritance注解来定义所选择的策略. 这个注解需要在每个类层次结构(class hierarchy) 最顶端的实体类上使用
+</code></pre><p>4.映射实体bean的关联关系</p>
+<p>4.1关联映射的一些定义</p>
+<pre><code>单向一对多：一方有集合属性，包含多个多方，而多方没有一方的引用。用户---&gt;电子邮件
+
+单向多对一：多方有一方的引用，一方没有多方的引用。论文类别---&gt;类别
+
+双向一对多：两边都有多方的引用，方便查询。班级---&gt;学生
+
+双向多对一：两边都有多方的引用，方便查询。
+
+单向多对多：需要一个中间表来维护两个实体表。论坛---&gt;文章
+
+单向一对一：数据唯一，数据库数据也是一对一。舰船---&gt;水手
+
+主键相同的一对一：使用同一个主键，省掉外键关联。客户---&gt;地址
+
+单向：关系写哪边，就由谁管理。
+
+双向：一般由多方管理。
+
+@OneToMany(mappedBy=&quot;对方&quot;) //反向配置，对方管理。
+</code></pre><p>4.2 关联映射的一些共有属性</p>
+<pre><code>@OneToOne、@OneToMany、@ManyToOne、ManyToMany的共有属性：
+
+fetch - 配置加载方式。取值有
+
+Fetch.EAGER -  及时加载，多对一默认是Fetch.EAGER 
+
+Fetch.LAZY - 延迟加载，一对多默认是Fetch.LAZY
+
+cascade - 设置级联方式，取值有：
+
+CascadeType.PERSIST - 保存
+
+CascadeType.REMOVE - 删除
+
+CascadeType.MERGE - 修改
+
+CascadeType.REFRESH - 刷新
+
+CascadeType.ALL - 全部
+
+targetEntity - 配置集合属性类型，如：@OneToMany(targetEntity=Book.class)
+
+@JoinColumn - 可选，用于描述一个关联的字段。
+
+@JoinColumn和@Column类似，介量描述的不是一个简单字段，而是一个关联字段，例如描述一个 @ManyToOne 的字段。
+</code></pre><p>属性：</p>
+<pre><code>name - 该字段的名称，由于@JoinColumn描述的是一个关联字段，如ManyToOne, 则默认的名称由其关联的实体决定。
+
+例如，实体 Order 有一个user 属性来关联实体 User, 则 Order 的 user 属性为一个外键 ,
+
+其默认的名称为实体User的名称 + 下划线 + 实体User的主键名称
+</code></pre><p>4.3 一对一关联</p>
+<pre><code>@OneToOne – 表示一个一对一的映射
+</code></pre><p>1.主表类A与从表类B的主键值相对应。</p>
+<pre><code>主表：
+ @OneToOne(cascade = CascadeType.ALL)
+ @PrimaryKeyJoinColumn
+ public B getB(){
+
+  Return b;
+
+}
+</code></pre><p>从表：无</p>
+<p>2.主表A中有一个从表属性是B类型的b</p>
+<pre><code>主表：
+ @OneToOne(cascade = CascadeType.ALL)
+ @JoinColumn(name=&quot;主表外键&quot;)   //这里指定的是数据库中的外键字段。
+ public B getB(){
+
+  return b;
+
+}
+</code></pre><p>从表：无</p>
+<p>3.主表A中有一个从表属性是B类型的b，同时，从表B中有一个主表属性是A类型的a</p>
+<p>主表：</p>
+<pre><code>@OneToOne(cascade = CascadeType.ALL)
+@JoinColumn(name=&quot;主表外键&quot;)   //这里指定的是数据库中的外键字段。
+public B getB(){
+
+return b;
+
+}
+</code></pre><p>从表：</p>
+<pre><code>@OneToOne(mappedBy = &quot;主表类中的从表属性&quot;)
+public 主表类 get主表类(){
+
+    return 主表对象
+
+}
+</code></pre><p>  注意：@JoinColumn是可选的。默认值是从表变量名+”_”+从表的主键（注意，这里加的是主键。而不是主键对应的变量）。</p>
+<p>4.4 多对一关联</p>
+<pre><code>@ManyToOne - 表示一个多对一的映射，该注解标注的属性通常是数据库表的外键。
+</code></pre><p>1.单向多对一：多方有一方的引用，一方没有多方的引用。</p>
+<pre><code>       在多方
+
+@ManyToOne(targetEntity=XXXX.class)   //指定关联对象
+
+@JoinColumn(name=&quot;&quot;)                            //指定产生的外键字段名
+</code></pre><p>2.双向多对一：配置方式同双向一对多。</p>
+<p>示例 :</p>
+<pre><code class="bash">    // 订单 Order 和用户 User 是一个 ManyToOne 的关系
+    // 在 Order 类中定义
+    @ManyToOne()
+    @JoinColumn(name=<span class="string">"USER"</span>)
+    public User <span class="function"><span class="title">getUser</span></span>() {
+       <span class="built_in">return</span> user;
+}
+</code></pre>
+<p>4.5 一对多关联</p>
+<pre><code>@OneToMany - 描述一个一对多的关联，该属性应该为集合类型，在数据库中并没有实际字段。
+</code></pre><p>1.单向一对多：一方有集合属性，包含多个多方，而多方没有一方的引用。</p>
+<pre><code>@OneToMany  默认会使用连接表做一对多关联
+
+添加@JoinColumn(name=&quot;xxx_id&quot;) 后，就会使用外键关联，而不使用连接表了。
+</code></pre><p>2.双向一对多</p>
+<p>1）在多方</p>
+<pre><code>@ManyToOne
+
+@JoinColumn(name=&quot;自己的数据库外键列名&quot;)
+</code></pre><p>2）在一方</p>
+<pre><code>@OneToMany(mappedBy=&quot;多端的关联属性名&quot;)
+
+@JoinColumn(name=&quot;对方的数据库外键列名&quot;)
+</code></pre><p>4.6 多对多关联</p>
+<pre><code>@ManyToMany - 可选，描述一个多对多的关联。
+</code></pre><p>属性：</p>
+<pre><code>targetEntity - 表示多对多关联的另一个实体类的全名，例如：package.Book.class
+
+mappedBy - 用在双向关联中，把关系的维护权翻转。
+</code></pre><p>1.单向多对多关联：</p>
+<pre><code>在主控方加入@ManyToMany注解即可。
+</code></pre><p>2.双向多对多关联：</p>
+<pre><code>两个实体间互相关联的属性必须标记为@ManyToMany，并相互指定targetEntity属性。有且只有一个实体的@ManyToMany注解需要指定mappedBy属性，指向targetEntity的集合属性名称。
+</code></pre><p>以下为使用注解的实例：</p>
+<pre><code>我们以产品类型ProductType类和产品Product类为例，一个产品类型对应多个产品，删除产品类型将该类型下的所有产品同时删除。首先需要@OneToMany和@ManyToOne标签来设置外键约束。
+
+在一对多的关系中，一是关系维护端（owner side），多是关系被维护端（inverse side）。
+
+@OneToMany有5个属性：targetEntity，fetch，mappedBy，orphanRemoval，cascade
+</code></pre><p> ###targetEntity   （Class targetEntity() default void.class;）  属性表示默认关联的实体类型，默认为当前标注的实体类；<br>因为一对多的实体集合时保存在集合类中，因此必须指明集合类中保存的具体类型：<br>1）指定集合泛型的具体类型；如：public List<product> getProducts() {…}<br>2）指定targetEntity属性类型；如：@OneToMany(targetEntity=Product.class,…)</product></p>
+<h3 id="fetch-FetchType-fetch-default-LAZY-属性是该实体的加载方式，FetchType是枚举类型，值有两种：LAZY和EAGER。一对多，一的一方，FetchType默认是LAZY-多的一方FetchType默认是EAGER。如果在字段中声明为Eager，那么在取得当前Bean时，同时会抓取Bean中的关联Bean值。即数据库查询多次。反之Lazy则在之后抓取提交查询。具体实验讲解：-Hibernate-EAGER-and-LAZY"><a href="#fetch-FetchType-fetch-default-LAZY-属性是该实体的加载方式，FetchType是枚举类型，值有两种：LAZY和EAGER。一对多，一的一方，FetchType默认是LAZY-多的一方FetchType默认是EAGER。如果在字段中声明为Eager，那么在取得当前Bean时，同时会抓取Bean中的关联Bean值。即数据库查询多次。反之Lazy则在之后抓取提交查询。具体实验讲解：-Hibernate-EAGER-and-LAZY" class="headerlink" title="fetch  (FetchType fetch() default LAZY;)  属性是该实体的加载方式，FetchType是枚举类型，值有两种：LAZY和EAGER。一对多，一的一方，FetchType默认是LAZY, 多的一方FetchType默认是EAGER。如果在字段中声明为Eager，那么在取得当前Bean时，同时会抓取Bean中的关联Bean值。即数据库查询多次。反之Lazy则在之后抓取提交查询。具体实验讲解：[Hibernate] - EAGER and LAZY"></a>fetch  (FetchType fetch() default LAZY;)  属性是该实体的加载方式，FetchType是枚举类型，值有两种：LAZY和EAGER。一对多，一的一方，FetchType默认是LAZY, 多的一方FetchType默认是EAGER。如果在字段中声明为Eager，那么在取得当前Bean时，同时会抓取Bean中的关联Bean值。即数据库查询多次。反之Lazy则在之后抓取提交查询。具体实验讲解：[Hibernate] - EAGER and LAZY</h3><h3 id="mappedBy-String-mappedBy-default-“”-属性用于双向关联实体时使用，用在关系的维护端指定关系的被维护端，在hibernate4中与外键标签-JoinColumn冲突，同时使用会报错；如-OneToMany-targetEntity-Product-class-mappedBy-”productType”-…-。"><a href="#mappedBy-String-mappedBy-default-“”-属性用于双向关联实体时使用，用在关系的维护端指定关系的被维护端，在hibernate4中与外键标签-JoinColumn冲突，同时使用会报错；如-OneToMany-targetEntity-Product-class-mappedBy-”productType”-…-。" class="headerlink" title="mappedBy  (String mappedBy() default “”;)  属性用于双向关联实体时使用，用在关系的维护端指定关系的被维护端，在hibernate4中与外键标签@JoinColumn冲突，同时使用会报错；如:@OneToMany(targetEntity=Product.class,mappedBy=”productType”,…)。"></a>mappedBy  (String mappedBy() default “”;)  属性用于双向关联实体时使用，用在关系的维护端指定关系的被维护端，在hibernate4中与外键标签@JoinColumn冲突，同时使用会报错；如:@OneToMany(targetEntity=Product.class,mappedBy=”productType”,…)。</h3><h3 id="orphanRemoval-（boolean-orphanRemoval-default-false-）-属性作用是删除孤立记录，即外键为空的类型，默认为false。该属性为true时会根据外键执行级联删除，因为当你删除productType的记录时，会使product表的记录外键被删除变为孤立记录，该属性进而将孤立记录删除掉。但hibernate实际执行的语句是先删除product表中的记录，后删除productType表中的记录。"><a href="#orphanRemoval-（boolean-orphanRemoval-default-false-）-属性作用是删除孤立记录，即外键为空的类型，默认为false。该属性为true时会根据外键执行级联删除，因为当你删除productType的记录时，会使product表的记录外键被删除变为孤立记录，该属性进而将孤立记录删除掉。但hibernate实际执行的语句是先删除product表中的记录，后删除productType表中的记录。" class="headerlink" title="orphanRemoval  （boolean orphanRemoval() default false;）  属性作用是删除孤立记录，即外键为空的类型，默认为false。该属性为true时会根据外键执行级联删除，因为当你删除productType的记录时，会使product表的记录外键被删除变为孤立记录，该属性进而将孤立记录删除掉。但hibernate实际执行的语句是先删除product表中的记录，后删除productType表中的记录。"></a>orphanRemoval  （boolean orphanRemoval() default false;）  属性作用是删除孤立记录，即外键为空的类型，默认为false。该属性为true时会根据外键执行级联删除，因为当你删除productType的记录时，会使product表的记录外键被删除变为孤立记录，该属性进而将孤立记录删除掉。但hibernate实际执行的语句是先删除product表中的记录，后删除productType表中的记录。</h3><h3 id="cascade-（CascadeType-cascade-default-）-级联属性，默认为空。该属性其实是一个值为枚举类型CascadeType的数组，在jpa的CascadeType枚举类型里面，有PERSIST（级联保存操作）-MERGE（合并-merge-save-update-）-REMOVE（级联删除操作）-REFRESH（级联刷新操作）-DETACH（级联分离操作）-ALL（所有级联操作）等6个枚举变量，其中DETACH是jpa2-0新加入的变量。这些变量的作用和他们的名字一样，可以很清楚的辨别出。这里我现在仅仅用过级联删除操作，其他的操作都仅仅是从名字和注释上猜测的，留待以后测试。"><a href="#cascade-（CascadeType-cascade-default-）-级联属性，默认为空。该属性其实是一个值为枚举类型CascadeType的数组，在jpa的CascadeType枚举类型里面，有PERSIST（级联保存操作）-MERGE（合并-merge-save-update-）-REMOVE（级联删除操作）-REFRESH（级联刷新操作）-DETACH（级联分离操作）-ALL（所有级联操作）等6个枚举变量，其中DETACH是jpa2-0新加入的变量。这些变量的作用和他们的名字一样，可以很清楚的辨别出。这里我现在仅仅用过级联删除操作，其他的操作都仅仅是从名字和注释上猜测的，留待以后测试。" class="headerlink" title="cascade  （CascadeType[] cascade() default {};）  级联属性，默认为空。该属性其实是一个值为枚举类型CascadeType的数组，在jpa的CascadeType枚举类型里面，有PERSIST（级联保存操作）,MERGE（合并(merge=save+update)）,REMOVE（级联删除操作）,REFRESH（级联刷新操作）,DETACH（级联分离操作）,ALL（所有级联操作）等6个枚举变量，其中DETACH是jpa2.0新加入的变量。这些变量的作用和他们的名字一样，可以很清楚的辨别出。这里我现在仅仅用过级联删除操作，其他的操作都仅仅是从名字和注释上猜测的，留待以后测试。"></a>cascade  （CascadeType[] cascade() default {};）  级联属性，默认为空。该属性其实是一个值为枚举类型CascadeType的数组，在jpa的CascadeType枚举类型里面，有PERSIST（级联保存操作）,MERGE（合并(merge=save+update)）,REMOVE（级联删除操作）,REFRESH（级联刷新操作）,DETACH（级联分离操作）,ALL（所有级联操作）等6个枚举变量，其中DETACH是jpa2.0新加入的变量。这些变量的作用和他们的名字一样，可以很清楚的辨别出。这里我现在仅仅用过级联删除操作，其他的操作都仅仅是从名字和注释上猜测的，留待以后测试。</h3><p>上面是jpa的级联操作，但在网上很多教程中往往写到用CascadeType.DELETE_ORPHAN，该操作属于hibernate自身的级联操作，在hibernate4中已声明过时，并推荐使用orphanRemoval属性来级联删除记录。</p>
+<p>在级联删除记录时，要先用hibernate.load()方法加载持久化对象，然后才能根据外键进行级联删除。至于load()方法和get()方法有什么不同，这里有一篇博文讲的不错：hibernate session的常用方法解析</p>
+<p>注意：改变model类的时候可能需要重新建表，如果级联删除不成功可以试一下。</p>
+<p>下面开始代码，首先是productType类，要求删除type的时候要删掉该type对应的所有product：</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a  href="/2017/10/30/hibernate注解详解/">Hibernate注解详解</a></p>
+        <p><span>文章作者:</span><a  href="/" title="访问 杨俊雄 的个人博客">杨俊雄</a></p>
+        <p><span>发布时间:</span>2017年10月30日 - 22时35分</p>
+        <p><span>最后更新:</span>2018年06月12日 - 21时59分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/10/30/hibernate注解详解/" title="Hibernate注解详解">http://yoursite.com/2017/10/30/hibernate注解详解/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/10/30/hibernate注解详解/　　作者: 杨俊雄" title=""></span>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a  href="/2018/06/12/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一-什么是Hibernate注解"><span class="toc-number">1.</span> <span class="toc-text">一. 什么是Hibernate注解?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二-注解配置持久化类常用注解"><span class="toc-number">2.</span> <span class="toc-text">二. 注解配置持久化类常用注解.</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三-注解配置对象关联关系"><span class="toc-number">3.</span> <span class="toc-text">三 注解配置对象关联关系.</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-OneToMany-and-ManyToOne（建立双向关联一对多）"><span class="toc-number">3.1.</span> <span class="toc-text">(1)     @OneToMany  and @ManyToOne（建立双向关联一对多）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#User-java类注解写法-一对多的一方"><span class="toc-number">3.1.1.</span> <span class="toc-text">User.java类注解写法(一对多的一方)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Product-java类注解写法-一对多的多方"><span class="toc-number">3.1.2.</span> <span class="toc-text">Product.java类注解写法(一对多的多方)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#非注解例子配置-hibernate-hbm-xml-User-hbm-xml-Prouct-hbm-xml一对多配置"><span class="toc-number">4.</span> <span class="toc-text">非注解例子配置 :hibernate.hbm.xml   User.hbm.xml   Prouct.hbm.xml一对多配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#hibernate-hbm-xml-基本配置"><span class="toc-number">4.1.</span> <span class="toc-text">hibernate.hbm.xml 基本配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#User-hbm-xml-非注解例子-一对多"><span class="toc-number">4.2.</span> <span class="toc-text">User.hbm.xml   非注解例子(一对多)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Prouct-hbm-xml配置"><span class="toc-number">4.3.</span> <span class="toc-text">Prouct.hbm.xml配置</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Hibernate注解使用方法总结-重点"><span class="toc-number">5.</span> <span class="toc-text">Hibernate注解使用方法总结(重点)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#fetch-FetchType-fetch-default-LAZY-属性是该实体的加载方式，FetchType是枚举类型，值有两种：LAZY和EAGER。一对多，一的一方，FetchType默认是LAZY-多的一方FetchType默认是EAGER。如果在字段中声明为Eager，那么在取得当前Bean时，同时会抓取Bean中的关联Bean值。即数据库查询多次。反之Lazy则在之后抓取提交查询。具体实验讲解：-Hibernate-EAGER-and-LAZY"><span class="toc-number">5.0.1.</span> <span class="toc-text">fetch  (FetchType fetch() default LAZY;)  属性是该实体的加载方式，FetchType是枚举类型，值有两种：LAZY和EAGER。一对多，一的一方，FetchType默认是LAZY, 多的一方FetchType默认是EAGER。如果在字段中声明为Eager，那么在取得当前Bean时，同时会抓取Bean中的关联Bean值。即数据库查询多次。反之Lazy则在之后抓取提交查询。具体实验讲解：[Hibernate] - EAGER and LAZY</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mappedBy-String-mappedBy-default-“”-属性用于双向关联实体时使用，用在关系的维护端指定关系的被维护端，在hibernate4中与外键标签-JoinColumn冲突，同时使用会报错；如-OneToMany-targetEntity-Product-class-mappedBy-”productType”-…-。"><span class="toc-number">5.0.2.</span> <span class="toc-text">mappedBy  (String mappedBy() default “”;)  属性用于双向关联实体时使用，用在关系的维护端指定关系的被维护端，在hibernate4中与外键标签@JoinColumn冲突，同时使用会报错；如:@OneToMany(targetEntity=Product.class,mappedBy=”productType”,…)。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#orphanRemoval-（boolean-orphanRemoval-default-false-）-属性作用是删除孤立记录，即外键为空的类型，默认为false。该属性为true时会根据外键执行级联删除，因为当你删除productType的记录时，会使product表的记录外键被删除变为孤立记录，该属性进而将孤立记录删除掉。但hibernate实际执行的语句是先删除product表中的记录，后删除productType表中的记录。"><span class="toc-number">5.0.3.</span> <span class="toc-text">orphanRemoval  （boolean orphanRemoval() default false;）  属性作用是删除孤立记录，即外键为空的类型，默认为false。该属性为true时会根据外键执行级联删除，因为当你删除productType的记录时，会使product表的记录外键被删除变为孤立记录，该属性进而将孤立记录删除掉。但hibernate实际执行的语句是先删除product表中的记录，后删除productType表中的记录。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cascade-（CascadeType-cascade-default-）-级联属性，默认为空。该属性其实是一个值为枚举类型CascadeType的数组，在jpa的CascadeType枚举类型里面，有PERSIST（级联保存操作）-MERGE（合并-merge-save-update-）-REMOVE（级联删除操作）-REFRESH（级联刷新操作）-DETACH（级联分离操作）-ALL（所有级联操作）等6个枚举变量，其中DETACH是jpa2-0新加入的变量。这些变量的作用和他们的名字一样，可以很清楚的辨别出。这里我现在仅仅用过级联删除操作，其他的操作都仅仅是从名字和注释上猜测的，留待以后测试。"><span class="toc-number">5.0.4.</span> <span class="toc-text">cascade  （CascadeType[] cascade() default {};）  级联属性，默认为空。该属性其实是一个值为枚举类型CascadeType的数组，在jpa的CascadeType枚举类型里面，有PERSIST（级联保存操作）,MERGE（合并(merge=save+update)）,REMOVE（级联删除操作）,REFRESH（级联刷新操作）,DETACH（级联分离操作）,ALL（所有级联操作）等6个枚举变量，其中DETACH是jpa2.0新加入的变量。这些变量的作用和他们的名字一样，可以很清楚的辨别出。这里我现在仅仅用过级联删除操作，其他的操作都仅仅是从名字和注释上猜测的，留待以后测试。</span></a></li></ol></li></ol></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+        <section class="changyan" id="comments">
+  <!--<div id="uyan_frame"></div>-->
+  <div id="SOHUCS"></div>
+  <script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js"></script>
+  <script type="text/javascript">
+    window.changyan.api.config({
+      appid: 'xxxx',
+      conf: 'xxxxxxxxx'
+    });
+  </script>
+</section>
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a  href="/2018/06/12/hello-world/" title="上一篇: Hello World">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a  href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/06/12/spring框架/">spring概述</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/12/Hibernate(HQL操作)/">Hibernate (HQL操作)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/12/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/30/hibernate注解详解/">Hibernate注解详解</a></li></ul>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+    <script>
+        $(".post-list").addClass("toc-article");
+        // $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
+
+
+
+
+    <script>
+        
+    </script>
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2018 杨俊雄
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo &nbsp;&nbsp;</a><a href="https://github.com/maochunguang" target="_blank">Blog</a> by tommy
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >极客到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 1;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'xxxxx', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?xxxxxx";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>
