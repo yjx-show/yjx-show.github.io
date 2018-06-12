@@ -2,12 +2,6 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="baidu-site-verification" content="L6Lm9d5Crl"/>
-  
-  
-   
-    <meta name="keywords" content="SQL" />
-  
   
   <title>Category: SQL | 杨俊雄</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -29,7 +23,7 @@
     <link rel="icon" href="/img/favicon.png">
   
   
-  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+      <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
   
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
@@ -43,6 +37,7 @@
     <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
   <script>
       var yiliaConfig = {
+          rootUrl: '/',
           fancybox: true,
           animate: true,
           isHome: false,
@@ -60,71 +55,19 @@
     <div class="overlay"></div>
 <div class="intrude-less">
     <header id="header" class="inner">
-        
-<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
-
         <a href="/" class="profilepic">
             
-            <img lazy-src="/img/avatar.png" class="js-avatar">
+            <img lazy-src="/img/head.jpg" class="js-avatar">
             
         </a>
+
         <hgroup>
-          <h1 class="header-author"><a href="/">杨俊雄</a></h1>
+          <h1 class="header-author"><a href="/" title="Hi Mate">杨俊雄</a></h1>
         </hgroup>
+
         
         <p class="header-subtitle">心动</p>
         
-        
-            <form>
-                <input type="text" class="st-default-search-input search" id="local-search-input" placeholder="搜索一下" autocomplete="off">
-            </form>
-            <div id="local-search-result"></div>
-        
-        
-            <script type="text/javascript">
-                (function() {
-                    'use strict';
-                    function getMatchData(keyword, data) {
-                        var matchData = [];
-                        for(var i =0;i<data.length;i++){
-                            if(data[i].title.toLowerCase().indexOf(keyword)>=0) 
-                                matchData.push(data[i])
-                        }
-                        return matchData;
-                    }
-                    var $input = $('#local-search-input');
-                    var $resultContent = $('#local-search-result');
-                    $input.keyup(function(){
-                        $.ajax({
-                            url: '/search.json',
-                            dataType: "json",
-                            success: function( json ) {
-                                var str='<ul class=\"search-result-list\">';                
-                                var keyword = $input.val().trim().toLowerCase();
-                                $resultContent.innerHTML = "";
-                                if ($input.val().trim().length <= 0) {
-                                    $resultContent.empty();
-                                    $('#switch-area').show();
-                                    return;
-                                }
-                                var results = getMatchData(keyword, json);
-                                if(results.length === 0){
-                                    $resultContent.empty();
-                                    $('#switch-area').show();
-                                    return;
-                                } 
-                                for(var i =0; i<results.length; i++){
-                                    str += "<li><a href='"+ results[i].url +"' class='search-result-title'>"+ results[i].title +"</a></li>";
-                                }
-                                str += "</ul>";
-                                $resultContent.empty();
-                                $resultContent.append(str);
-                                $('#switch-area').hide();
-                            }
-                        });
-                    });
-                })();
-            </script>
         
         
             <div id="switch-btn" class="switch-btn">
@@ -150,6 +93,7 @@
                         </div>
                         
                     </div>
+                    
                 </div>
                 <div class="tips-box hide">
                     <div class="tips-arrow"></div>
@@ -166,30 +110,30 @@
                 </div>
             </div>
         
+
         <div id="switch-area" class="switch-area">
             <div class="switch-wrap">
                 <section class="switch-part switch-part1">
                     <nav class="header-menu">
                         <ul>
                         
-                            <li><a  href="/archives/">主页</a></li>
-                        
-                            <li><a  href="/archives/">所有文章</a></li>
+                            <li><a href="/archives/">博客首页</a></li>
                         
                         </ul>
                     </nav>
                     <nav class="header-nav">
                         <ul class="social">
                             
-                                <a class="fl github"  target="_blank" href="https://github.com/yjx-show/yjx-show.github.io.git" title="github">github</a>
+                                <a class="fl mail" target="_blank" href="mailto:492038605@qq.com" title="mail">mail</a>
                             
-                                <a class="fl qq"  target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=492038605&site=qq&menu=yes" title="qq">qq</a>
+                                <a class="fl github" target="_blank" href="https://github.com/yjx-show/yjx-show.github.io.git" title="github">github</a>
                             
-                                <a class="fl mail"  target="_blank" href="mailto:492038605@qq.com" title="mail">mail</a>
+                                <a class="fl QQ" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=492038605&site=qq&menu=yes" title="QQ">QQ</a>
                             
                         </ul>
                     </nav>
                 </section>
+                
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
@@ -198,42 +142,43 @@
                 </section>
                 
                 
+                
                 <section class="switch-part switch-part3">
                     <div id="js-friends">
                     
-                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://www.jianshu.com/u/8569a7d98427">简书</a>
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://www.jianshu.com/u/8569a7d98427">简书</a>
                     
                     </div>
                 </section>
                 
+
                 
                 
                 <section class="switch-part switch-part4">
                 
-                    <div id="js-aboutme">还是熟悉的味道               很高兴遇见你!</div>
+                    <div id="js-aboutme">假装很陌生   其实很熟悉  很高兴遇见你</div>
                 </section>
                 
             </div>
         </div>
-    </header>
+    </header>                
 </div>
-
     </div>
     <div class="mid-col">
       <nav id="mobile-nav">
       <div class="overlay">
           <div class="slider-trigger"></div>
-          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">杨俊雄</a></h1>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">杨俊雄</a></h1>
       </div>
     <div class="intrude-less">
         <header id="header" class="inner">
             <a href="/" class="profilepic">
                 
-                    <img lazy-src="/img/avatar.png" class="js-avatar">
+                    <img lazy-src="/img/head.jpg" class="js-avatar">
                 
             </a>
             <hgroup>
-              <h1 class="header-author"><a href="/" title="回到主页">杨俊雄</a></h1>
+              <h1 class="header-author"><a href="/" title="Me">杨俊雄</a></h1>
             </hgroup>
             
             <p class="header-subtitle">心动</p>
@@ -241,9 +186,7 @@
             <nav class="header-menu">
                 <ul>
                 
-                    <li><a href="/archives/">主页</a></li>
-                
-                    <li><a href="/archives/">所有文章</a></li>
+                    <li><a href="/archives/">博客首页</a></li>
                 
                 <div class="clearfix"></div>
                 </ul>
@@ -251,15 +194,15 @@
             <nav class="header-nav">
                 <div class="social">
                     
+                        <a class="mail" target="_blank" href="mailto:492038605@qq.com" title="mail">mail</a>
+                    
                         <a class="github" target="_blank" href="https://github.com/yjx-show/yjx-show.github.io.git" title="github">github</a>
                     
-                        <a class="qq" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=492038605&site=qq&menu=yes" title="qq">qq</a>
-                    
-                        <a class="mail" target="_blank" href="mailto:492038605@qq.com" title="mail">mail</a>
+                        <a class="QQ" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=492038605&site=qq&menu=yes" title="QQ">QQ</a>
                     
                 </div>
             </nav>
-        </header>
+        </header>                
     </div>
 </nav>
       <div class="body-wrap">
@@ -271,7 +214,7 @@
       
       <section class="archives-wrap">
         <div class="archive-year-wrap">
-          <a  href="/archives/2017" class="archive-year">2017</a>
+          <a href="/archives/2017" class="archive-year">2017</a>
         </div>
         <div class="archives">
     
@@ -279,18 +222,16 @@
   <div class="archive-article-inner">
     <header class="archive-article-header">
           <div class="article-meta">
-              <a  href="/2017/10/30/hibernate注解详解/" class="archive-article-date">
+              <a href="/2017/10/30/hibernate注解详解/" class="archive-article-date">
       <time datetime="2017-10-30T14:35:37.000Z" itemprop="datePublished">10-30</time>
 </a>
-
         </div>
          
   
     <h1 itemprop="name">
-      <a  class="archive-article-title" href="/2017/10/30/hibernate注解详解/">Hibernate注解详解</a>
+      <a class="archive-article-title" href="/2017/10/30/hibernate注解详解/">Hibernate注解详解</a>
     </h1>
   
-
 
         <div class="article-info info-on-archive">
           
@@ -316,7 +257,6 @@
 
     
 
-
 </div>
       <footer id="footer">
     <div class="outer">
@@ -325,14 +265,14 @@
                 &copy; 2018 杨俊雄
             </div>
             <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank">Hexo &nbsp;&nbsp;</a><a href="https://github.com/maochunguang" target="_blank">Blog</a> by tommy
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman
             </div>
         </div>
         
             <div class="visit">
                 
                     <span id="busuanzi_container_site_pv" style='display:none'>
-                        <span id="site-visit" >极客到访数: 
+                        <span id="site-visit" >心心到访数: 
                             <span id="busuanzi_value_site_uv"></span>
                         </span>
                     </span>
@@ -353,14 +293,12 @@
 </footer>
 
     </div>
-    
-<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
-
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
 <script src="/js/main.js"></script>
 
     <script>
         $(document).ready(function() {
-            var backgroundnum = 1;
+            var backgroundnum = 24;
             var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
             $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
             $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
@@ -368,30 +306,6 @@
     </script>
 
 
-<!-- Google Analytics -->
-<script type="text/javascript">
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'xxxxx', 'auto');
-ga('send', 'pageview');
-
-</script>
-<!-- End Google Analytics -->
-
-
-
-	<script>
-	var _hmt = _hmt || [];
-	(function() {
-	  var hm = document.createElement("script");
-	  hm.src = "//hm.baidu.com/hm.js?xxxxxx";
-	  var s = document.getElementsByTagName("script")[0]; 
-	  s.parentNode.insertBefore(hm, s);
-	})();
-	</script>
 
 
 
@@ -409,9 +323,8 @@ ga('send', 'pageview');
 </script>
 
     <button class="hide-labels">TAG 开关</button>
-    
-<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
-
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js">
+    </script>
     <script>
         $(document).ready(function() {
             $("button").click(function() {
@@ -430,6 +343,7 @@ ga('send', 'pageview');
             var title = a.attr('title');
             if (title == undefined || title == "") return;
             a.data('title', title).removeAttr('title').hover(
+
             function() {
                 var offset = a.offset();
                 $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
