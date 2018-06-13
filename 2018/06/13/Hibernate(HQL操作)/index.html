@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Hello World | 心动CCC</title>
+  <title>Hibernate (HQL操作) | 心动CCC</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
-<meta name="keywords" content="y3">
+  <meta name="description" content="Hibernate (HQL操作)： 红黑树">
+<meta name="keywords" content="数据库">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2018/06/12/hello-world/index.html">
+<meta property="og:title" content="Hibernate (HQL操作)">
+<meta property="og:url" content="http://yoursite.com/2018/06/13/Hibernate(HQL操作)/index.html">
 <meta property="og:site_name" content="心动CCC">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="Hibernate (HQL操作)： 红黑树">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-12T15:12:37.894Z">
+<meta property="og:updated_time" content="2018-06-13T08:16:52.280Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="Hibernate (HQL操作)">
+<meta name="twitter:description" content="Hibernate (HQL操作)： 红黑树">
   
     <link rel="alternative" href="/atom.xml" title="心动CCC" type="application/atom+xml">
   
@@ -140,7 +140,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/数据库/" style="font-size: 10px;">数据库</a>
+                        <a href="/tags/javaweb框架/" style="font-size: 10px;">javaweb框架</a> <a href="/tags/数据库/" style="font-size: 20px;">数据库</a>
                     </div>
                 </section>
                 
@@ -212,11 +212,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Hibernate(HQL操作)" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2018/06/12/hello-world/" class="article-date">
-      <time datetime="2018-06-12T15:12:37.894Z" itemprop="datePublished">2018-06-12</time>
+      <a href="/2018/06/13/Hibernate(HQL操作)/" class="article-date">
+      <time datetime="2018-06-13T14:35:37.000Z" itemprop="datePublished">2018-06-13</time>
 </a>
     </div>
   
@@ -229,7 +229,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      Hibernate (HQL操作)
     </h1>
   
 
@@ -237,8 +237,16 @@
       
       <div class="article-info article-info-post">
         
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Hibernate-HQL操作/">Hibernate (HQL操作)</a>
+    </div>
+
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据库/">数据库</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -246,15 +254,16 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <p><strong> Hibernate (HQL操作)：</strong> <excerpt in="" index="" |="" 首页摘要=""><br>红黑树<br><a id="more"></a></excerpt></p>
+<p><the rest="" of="" contents="" |="" 余下全文=""><br>正文……</the></p>
+<h2 id="HQL介绍"><a href="#HQL介绍" class="headerlink" title="HQL介绍"></a>HQL介绍</h2><p>HQL是我们在hibernate中是常用的一种检索方式。<br>HQL（Hibernate Query Language）提供更加丰富灵活、更为强大的查询能力<br>因此Hibernate将HQL查询方式立为官方推荐的标准查询方式，HQL查询在涵盖Criteria查询的所有功能的前提下，提供了类似标准SQL语 句的查询方式，同时也提供了更加面向对象的封装。完整的HQL语句形式如下： Select/update/delete…… from …… where …… group by …… having …… order by …… asc/desc 其中的update/delete为Hibernate3中所新添加的功能，可见HQL查询非常类似于标准SQL查询。<br>基本步骤:</p>
+<ol>
+<li>得到Session</li>
+<li>编写HQL语句</li>
+<li>通过session.createQuery(hql)创建一个Query对象</li>
+<li>为Query对象设置条件参数</li>
+<li>执行list查询所有，它反回的是List集合  uniqueResut()返回一个查询结果。<br><a href="https://yjx-show.github.io" target="_blank" rel="noopener">回到git</a></li>
+</ol>
 
       
       
@@ -310,13 +319,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2018/06/12/hello-world/">Hello World</a></p>
+        <p><span>本文标题:</span><a href="/2018/06/13/Hibernate(HQL操作)/">Hibernate (HQL操作)</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 心动CCC 的个人博客">心动CCC</a></p>
-        <p><span>发布时间:</span>2018年06月12日 - 23时12分</p>
-        <p><span>最后更新:</span>2018年06月12日 - 23时12分</p>
+        <p><span>发布时间:</span>2018年06月13日 - 22时35分</p>
+        <p><span>最后更新:</span>2018年06月13日 - 16时16分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2018/06/12/hello-world/" title="Hello World">http://yoursite.com/2018/06/12/hello-world/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/06/12/hello-world/　　作者: 心动CCC" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2018/06/13/Hibernate(HQL操作)/" title="Hibernate (HQL操作)">http://yoursite.com/2018/06/13/Hibernate(HQL操作)/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/06/13/Hibernate(HQL操作)/　　作者: 心动CCC" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -329,15 +338,11 @@
 
 <nav id="article-nav">
   
-    <a href="/2018/06/12/Hibernate(HQL操作)/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          Hibernate (HQL操作)
-        
-      </div>
-    </a>
   
+    <a href="/2018/06/13/spring框架/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Spring框架</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
   
 </nav>
 
@@ -346,7 +351,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HQL介绍"><span class="toc-number">1.</span> <span class="toc-text">HQL介绍</span></a></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -412,16 +417,16 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2018/06/12/Hibernate(HQL操作)/" title="上一篇: Hibernate (HQL操作)">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/2018/06/13/spring框架/" title="下一篇: Spring框架">
+                <i class="fa fa-angle-right"></i>
+            </a>
         
     </div>
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/06/13/hibernate注解详解/">Hibernate注解详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/12/spring框架/">spring概述</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/12/Hibernate(HQL操作)/">Hibernate (HQL操作)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/12/hello-world/">Hello World</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/06/13/Hibernate(HQL操作)/">Hibernate (HQL操作)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/13/spring框架/">Spring框架</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/13/hibernate注解详解/">Hibernate注解详解</a></li></ul>
     <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
     <script>
         $(".post-list").addClass("toc-article");
