@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="心动CCC">
 <meta property="og:description" content="Hibernate (HQL操作)： HQL是我们在hibernate中是常用的一种检索方式。HQL（Hibernate Query Language）提供更加丰富灵活、更为强大的查询能力因此Hibernate将HQL查询方式立为官方推荐的标准查询方式，……">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-13T13:37:51.199Z">
+<meta property="og:updated_time" content="2018-06-14T01:52:09.184Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hibernate (HQL操作)">
 <meta name="twitter:description" content="Hibernate (HQL操作)： HQL是我们在hibernate中是常用的一种检索方式。HQL（Hibernate Query Language）提供更加丰富灵活、更为强大的查询能力因此Hibernate将HQL查询方式立为官方推荐的标准查询方式，……">
@@ -256,13 +256,13 @@
           
         <p><strong> Hibernate (HQL操作)：</strong> <excerpt in="" index="" |="" 首页摘要=""><br>HQL是我们在hibernate中是常用的一种检索方式。<br>HQL（Hibernate Query Language）提供更加丰富灵活、更为强大的查询能力<br>因此Hibernate将HQL查询方式立为官方推荐的标准查询方式，……<br><a id="more"></a></excerpt></p>
 <p><the rest="" of="" contents="" |="" 余下全文=""><br>正文……</the></p>
-<h2 id="HQL介绍"><a href="#HQL介绍" class="headerlink" title="HQL介绍"></a>HQL介绍</h2><p>HQL是我们在hibernate中是常用的一种检索方式。<br>HQL（Hibernate Query Language）提供更加丰富灵活、更为强大的查询能力<br>因此Hibernate将HQL查询方式立为官方推荐的标准查询方式，HQL查询在涵盖Criteria查询的所有功能的前提下，提供了类似标准SQL语 句的查询方式，同时也提供了更加面向对象的封装。完整的HQL语句形式如下： Select/update/delete…… from …… where …… group by …… having …… order by …… asc/desc 其中的update/delete为Hibernate3中所新添加的功能，可见HQL查询非常类似于标准SQL查询。<br>基本步骤:</p>
+<h3 id="HQL介绍"><a href="#HQL介绍" class="headerlink" title="HQL介绍"></a>HQL介绍</h3><p>HQL是我们在hibernate中是常用的一种检索方式。<br>HQL（Hibernate Query Language）提供更加丰富灵活、更为强大的查询能力<br>因此Hibernate将HQL查询方式立为官方推荐的标准查询方式，HQL查询在涵盖Criteria查询的所有功能的前提下，提供了类似标准SQL语 句的查询方式，同时也提供了更加面向对象的封装。完整的HQL语句形式如下： Select/update/delete…… from …… where …… group by …… having …… order by …… asc/desc 其中的update/delete为Hibernate3中所新添加的功能，可见HQL查询非常类似于标准SQL查询。<br>基本步骤:</p>
 <ol>
 <li>得到Session</li>
 <li>编写HQL语句</li>
 <li>通过session.createQuery(hql)创建一个Query对象</li>
 <li>为Query对象设置条件参数</li>
-<li>执行list查询所有，它反回的是List集合  uniqueResut()返回一个查询结果。<h2 id="HQL查询的from子句"><a href="#HQL查询的from子句" class="headerlink" title="HQL查询的from子句"></a>HQL查询的from子句</h2>from是最简单的语句，也是最基本的HQL语句。from关键字后紧跟持久化类的类名。</li>
+<li>执行list查询所有，它反回的是List集合  uniqueResut()返回一个查询结果。<h3 id="HQL查询的from子句"><a href="#HQL查询的from子句" class="headerlink" title="HQL查询的from子句"></a>HQL查询的from子句</h3>from是最简单的语句，也是最基本的HQL语句。from关键字后紧跟持久化类的类名。</li>
 </ol>
 <p>例如：</p>
 <p>from Person  表明从Person持久化类中选出全部的实例</p>
@@ -271,7 +271,7 @@
 <p>p作为Person的实例的别名，因此也应该遵守Java的命名规则：第一个单词的首字母小写，后面每个单词的首字母大写。</p>
 <p>命名别名时，as关键字是可选的，但为了增加可读性，建议保留。</p>
 <p>from 后还可同时出现多个持久化类，此时将产生一个笛卡尔积或跨表的连接，但实际上这种用法很少使用，因为通常我们可能需要使用跨表的连接，此时可以考虑使用隐式连接或显示连接，而不是直接在from后紧跟多个表名。</p>
-<h2 id="关联和连接"><a href="#关联和连接" class="headerlink" title="关联和连接"></a>关联和连接</h2><p>Hibernate使用关联映射来处理底层数据表之间的连接，一旦我们提供了正确的关联映射后，当程序通过Hibernate进行持久化访问时，将可利用Hibernate的关联来进行连接。</p>
+<h3 id="关联和连接"><a href="#关联和连接" class="headerlink" title="关联和连接"></a>关联和连接</h3><p>Hibernate使用关联映射来处理底层数据表之间的连接，一旦我们提供了正确的关联映射后，当程序通过Hibernate进行持久化访问时，将可利用Hibernate的关联来进行连接。</p>
 <pre><code>HQL支持两种关联连接(join)的形式：隐式(implicit)与显示(explicit)。
 </code></pre><p>隐式连接形式不适用join关键字，使用英文点号(.)来隐式连接来关联实体，而Hibernate底层将自动进行关联查询。如下HQL语句：</p>
 <p>from Person p where p.myEvent.title &gt; :title</p>
@@ -295,7 +295,7 @@
 <pre><code> HQL语句中的with关键字的作用基本等同于SQL99中on关键字的作用：都是用于指定连接条件。通过在HQL语句中使用with关键字，可以让HQL语句执行非等值连接查询。
 
 由于表连接的方式都是基于底层SQL来实现的，如果底层不支持这些外连接，那么执行对应的HQL时就会相应地引发异常。
-</code></pre><h2 id="隐式连接和显示连接有如下两点区别"><a href="#隐式连接和显示连接有如下两点区别" class="headerlink" title="隐式连接和显示连接有如下两点区别"></a>隐式连接和显示连接有如下两点区别</h2><p>（1）隐式连接底层转换成SQL92的内连接，显示连接层将转换成SQL99的多表连接。</p>
+</code></pre><h3 id="隐式连接和显示连接有如下两点区别"><a href="#隐式连接和显示连接有如下两点区别" class="headerlink" title="隐式连接和显示连接有如下两点区别"></a>隐式连接和显示连接有如下两点区别</h3><p>（1）隐式连接底层转换成SQL92的内连接，显示连接层将转换成SQL99的多表连接。</p>
 <p>（2）隐式连接和显示连接查询后返回的结果不同。</p>
 <p>当HQL语句中省略select关键字时，使用隐式连接查询返回的结果是多个被查询实体组成的集合。</p>
 <p>当HQL语句中省略select关键字时，使用显示连接查询返回的结果也是集合，但集合元素是被查询持久化对象、所有被关联的持久化对象所组成的数组。</p>
@@ -319,7 +319,7 @@
 full join fetch 与right join fetch是没有任何意义的。
 </code></pre><p>程序里希望预加载那些原本应延迟加载的属性，则可以通过fetch all properties来强制Hibernate立即抓取这些属性。例如：</p>
 <p>from Document fetch all properties order by name</p>
-<h2 id="HQL查询的select子句"><a href="#HQL查询的select子句" class="headerlink" title="HQL查询的select子句"></a>HQL查询的select子句</h2><p>（1）select子句用于选择指定的属性或直接选择某个实体，当然select选择的属性必须是from后持久化类包含的属性。</p>
+<h3 id="HQL查询的select子句"><a href="#HQL查询的select子句" class="headerlink" title="HQL查询的select子句"></a>HQL查询的select子句</h3><p>（1）select子句用于选择指定的属性或直接选择某个实体，当然select选择的属性必须是from后持久化类包含的属性。</p>
 <p>例如：</p>
 <p>select p.name from Person as p</p>
 <p>（2）select可以选择任意属性，即不仅可以选择持久化类的直接属性，还可以选择组件属性包含的属性。例如：</p>
@@ -342,19 +342,19 @@ full join fetch 与right join fetch是没有任何意义的。
 <p>这种用法与new map 结合使用更普遍。例如：</p>
 <p>select new map(p.name as personName) from Person as p</p>
 <p>执行上面的HQL语句返回的结果是集合，其中集合元素时Map对象，以personName作为Map的key，实际选出的值作为Map的value。</p>
-<h2 id="HQL查询的聚集函数"><a href="#HQL查询的聚集函数" class="headerlink" title="HQL查询的聚集函数"></a>HQL查询的聚集函数</h2><p>HQL支持的聚集函数与SQL的完全相同：avg，count，max，min，sum。</p>
+<h3 id="HQL查询的聚集函数"><a href="#HQL查询的聚集函数" class="headerlink" title="HQL查询的聚集函数"></a>HQL查询的聚集函数</h3><p>HQL支持的聚集函数与SQL的完全相同：avg，count，max，min，sum。</p>
 <p>例如，如下的HQL语句：</p>
 <p>select count(*) from Person</p>
 <p>select max(p.page) from Person as p</p>
 <p>select子句还支持字符串连接符、算术连接符，以及SQL函数。例如：</p>
 <p>select p.name||””||p.address from Person as p</p>
 <p>select子句也支持使用distinct和all关键字，此时的效果与SQL的效果完全相同。</p>
-<h2 id="多态查询"><a href="#多态查询" class="headerlink" title="多态查询"></a>多态查询</h2><p> HQL语句被设计成能够理解多态查询，from后跟持久化类名，不仅会查询出该持久化类的全部实例，还会查询出该类的子类的全部实例。</p>
+<h3 id="多态查询"><a href="#多态查询" class="headerlink" title="多态查询"></a>多态查询</h3><p> HQL语句被设计成能够理解多态查询，from后跟持久化类名，不仅会查询出该持久化类的全部实例，还会查询出该类的子类的全部实例。</p>
 <p>如下面的查询语句：from Person as p</p>
 <pre><code>如果Named接口有多个持久化实现类，下面的语句将返回这些持久化类的全部实例。
 </code></pre><p>如下面的查询语句：from Named as n</p>
 <p>注意：上面最后一条查询，需要多个SQL SELECT 语句，因此无法使用order by子句对结果集排序，从而不允许对这些查询结果使用Query.scroll()方法。</p>
-<h2 id="HQL查询的where子句"><a href="#HQL查询的where子句" class="headerlink" title="HQL查询的where子句"></a>HQL查询的where子句</h2><p>（1）where子句用于筛选选中的结果，缩小选择的范围。如果没有为持久化实例命名别名，则可以直接使用属性名来引用属性。</p>
+<h3 id="HQL查询的where子句"><a href="#HQL查询的where子句" class="headerlink" title="HQL查询的where子句"></a>HQL查询的where子句</h3><p>（1）where子句用于筛选选中的结果，缩小选择的范围。如果没有为持久化实例命名别名，则可以直接使用属性名来引用属性。</p>
 <p>如下面两条HQL语句：</p>
 <p>from Person where name like “tom%”</p>
 <p>form Person as p where p.name like “tom%”</p>
@@ -377,7 +377,7 @@ full join fetch 与right join fetch是没有任何意义的。
 <p>from Account as a where a.person.name.firstName like “dd%”</p>
 <p>//下面是错误实例</p>
 <p>from Account as a where a.person.name like “dd%”</p>
-<h2 id="表达式"><a href="#表达式" class="headerlink" title="表达式"></a>表达式</h2><p>1、HQL的功能非常丰富，where子句后支持的运算符，不仅包括SQL的运算符，也包括EJB-QL的运算符等。</p>
+<h3 id="表达式"><a href="#表达式" class="headerlink" title="表达式"></a>表达式</h3><p>1、HQL的功能非常丰富，where子句后支持的运算符，不仅包括SQL的运算符，也包括EJB-QL的运算符等。</p>
 <p>where子句中允许使用大部分SQL支持的表达式，包括如下种类：</p>
 <p>（1）字符串连接：如value1||value2，或使用字符串连接函数concat(value1, value2)</p>
 <p>（2）简单的case，case…when…then…else…end和case，case when…then…else…end等。</p>
@@ -397,7 +397,7 @@ full join fetch 与right join fetch是没有任何意义的。
 <p>from Order order where order.items[0].id=1234</p>
 <p>在【】中的表达式甚至可以是一个算式表达式。</p>
 <p>5、结构变量：size、elements、indices等，只能在where子句中使用。</p>
-<h2 id="order-by子句"><a href="#order-by子句" class="headerlink" title="order by子句"></a>order by子句</h2><p>查询返回的集合根据类或组件属性的任何属性进行排序。例如：</p>
+<h3 id="order-by子句"><a href="#order-by子句" class="headerlink" title="order by子句"></a>order by子句</h3><p>查询返回的集合根据类或组件属性的任何属性进行排序。例如：</p>
 <p>from Person as p order by p.name,p.age</p>
 <p>还可以使用as或desc关键字指定升序或降序的排序规则。例如：</p>
 <p>from Person as p order by p.name asc，p.age desc</p>
@@ -409,7 +409,7 @@ full join fetch 与right join fetch是没有任何意义的。
 <p>having子句用于对分组进行过滤，如下所示：</p>
 <p>select cat,color,sum(cat.weight),count(cat) from Cat cat group by cat.color having cat.color in (eg.Color.TABBY,eg.Color.BLACK)</p>
 <p>注意：group by子句与order by 子句中都不能包含算术表达式</p>
-<h2 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h2><p>1）如果底层数据库支持子查询，则可以在HQL语句中使用子查询。如下：</p>
+<h3 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h3><p>1）如果底层数据库支持子查询，则可以在HQL语句中使用子查询。如下：</p>
 <p>from Cat as fatcat where fatcat.weight &gt; (select avg(cat.weight) from DomesticCat cat)</p>
 <p>（2）如果子查询是多行结果集，则应该使用多行运算符。如下：</p>
 <p>from Cat as cat where not(cat.name, cat.color) in (select cat.name, cat.color from DomesticCat cat)</p>
@@ -417,13 +417,13 @@ full join fetch 与right join fetch是没有任何意义的。
 <p>select cat.id,(select max(kit.weight) from cat.kitten kit)</p>
 <p>from Cat as cat</p>
 <p>注意：HQL子查询只可以在select子句或者where子句中出现。</p>
-<h2 id="命名查询"><a href="#命名查询" class="headerlink" title="命名查询"></a>命名查询</h2><p>HQL支持将查询所用的HQL语句放入配置文件中，而不是代码中。</p>
+<h3 id="命名查询"><a href="#命名查询" class="headerlink" title="命名查询"></a>命名查询</h3><p>HQL支持将查询所用的HQL语句放入配置文件中，而不是代码中。</p>
 <p>在Hibernate映射文件的<hibernate-mapping>元素中使用<query>子元素来定义命名查询，使用<query>元素只需要指定一个name属性，指定该命名查询的名字。该元素的内容就是命名查询的HQL语句。如下配置文件片段：</query></query></hibernate-mapping></p>
 <query name="myNameQuery"><br><br>        from Person as p where p.age &gt; ?<br><br></query>
 
 <p>配置好后，通过Session提供的一个getNameQuery(String name)方法，该方法用于创建一个Query对象，剩下的操作与普通HQL完全一样。如下所示：</p>
 <p>List p1 = sess.getNamedQuery(“myNameQuery”).setInteger(0,20).list()</p>
-<h2 id="条件查询"><a href="#条件查询" class="headerlink" title="条件查询"></a>条件查询</h2><p>条件查询通过如下3个类完成：</p>
+<h3 id="条件查询"><a href="#条件查询" class="headerlink" title="条件查询"></a>条件查询</h3><p>条件查询通过如下3个类完成：</p>
 <p>Criteria：代表一次查询。</p>
 <p>Criterion：代表一个查询条件。</p>
 <p>Restrictions：产生查询条件的工具类。</p>
@@ -455,7 +455,7 @@ full join fetch 与right join fetch是没有任何意义的。
 <p>Criterion接口代表一个查询条件，该查询条件由Restrictions负责产生。Restrictions是专门用于产生查询条件的工具类，它的方法大部分都是静态方法，常用的方法如下：</p>
 <p>（1）static Criteion allEq(Map propertyNameValues)：判断指定属性(由Map参数的key指定)和指定值(由Map参数的value指定)是否完全相等。</p>
 <p>（2）static Criterion between(String propertyName, Object lo, Object hi)：判断属性值在某个指范围之内。</p>
-<h2 id="关联和动态关联"><a href="#关联和动态关联" class="headerlink" title="关联和动态关联"></a>关联和动态关联</h2><p>代码片段如下：</p>
+<h3 id="关联和动态关联"><a href="#关联和动态关联" class="headerlink" title="关联和动态关联"></a>关联和动态关联</h3><p>代码片段如下：</p>
 <p>List l = session.createCriteria(Student.class)</p>
 <pre><code>//此处增加限制条件必须是Student已经存在的属性
 
@@ -738,7 +738,7 @@ public static Session currentSession() throws HibernateException
         <p><span>本文标题:</span><a href="/2018/06/10/Hibernate (HQL操作)/">Hibernate (HQL操作)</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 心动CCC 的个人博客">心动CCC</a></p>
         <p><span>发布时间:</span>2018年06月10日 - 22时35分</p>
-        <p><span>最后更新:</span>2018年06月13日 - 21时37分</p>
+        <p><span>最后更新:</span>2018年06月14日 - 09时52分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/06/10/Hibernate (HQL操作)/" title="Hibernate (HQL操作)">http://yoursite.com/2018/06/10/Hibernate (HQL操作)/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/06/10/Hibernate (HQL操作)/　　作者: 心动CCC" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -776,7 +776,7 @@ public static Session currentSession() throws HibernateException
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HQL介绍"><span class="toc-number">1.</span> <span class="toc-text">HQL介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HQL查询的from子句"><span class="toc-number">2.</span> <span class="toc-text">HQL查询的from子句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关联和连接"><span class="toc-number">3.</span> <span class="toc-text">关联和连接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#隐式连接和显示连接有如下两点区别"><span class="toc-number">4.</span> <span class="toc-text">隐式连接和显示连接有如下两点区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HQL查询的select子句"><span class="toc-number">5.</span> <span class="toc-text">HQL查询的select子句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HQL查询的聚集函数"><span class="toc-number">6.</span> <span class="toc-text">HQL查询的聚集函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多态查询"><span class="toc-number">7.</span> <span class="toc-text">多态查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HQL查询的where子句"><span class="toc-number">8.</span> <span class="toc-text">HQL查询的where子句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#表达式"><span class="toc-number">9.</span> <span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#order-by子句"><span class="toc-number">10.</span> <span class="toc-text">order by子句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#子查询"><span class="toc-number">11.</span> <span class="toc-text">子查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命名查询"><span class="toc-number">12.</span> <span class="toc-text">命名查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#条件查询"><span class="toc-number">13.</span> <span class="toc-text">条件查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关联和动态关联"><span class="toc-number">14.</span> <span class="toc-text">关联和动态关联</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#投影、聚合和分组"><span class="toc-number">15.</span> <span class="toc-text">投影、聚合和分组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#离线查询和子查询"><span class="toc-number">16.</span> <span class="toc-text">离线查询和子查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#事务和Session"><span class="toc-number">17.</span> <span class="toc-text">事务和Session</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#上下文相关的Session"><span class="toc-number">18.</span> <span class="toc-text">上下文相关的Session</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#HQL介绍"><span class="toc-number">1.</span> <span class="toc-text">HQL介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HQL查询的from子句"><span class="toc-number">2.</span> <span class="toc-text">HQL查询的from子句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关联和连接"><span class="toc-number">3.</span> <span class="toc-text">关联和连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#隐式连接和显示连接有如下两点区别"><span class="toc-number">4.</span> <span class="toc-text">隐式连接和显示连接有如下两点区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HQL查询的select子句"><span class="toc-number">5.</span> <span class="toc-text">HQL查询的select子句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HQL查询的聚集函数"><span class="toc-number">6.</span> <span class="toc-text">HQL查询的聚集函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多态查询"><span class="toc-number">7.</span> <span class="toc-text">多态查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HQL查询的where子句"><span class="toc-number">8.</span> <span class="toc-text">HQL查询的where子句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#表达式"><span class="toc-number">9.</span> <span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#order-by子句"><span class="toc-number">10.</span> <span class="toc-text">order by子句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#子查询"><span class="toc-number">11.</span> <span class="toc-text">子查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#命名查询"><span class="toc-number">12.</span> <span class="toc-text">命名查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#条件查询"><span class="toc-number">13.</span> <span class="toc-text">条件查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关联和动态关联"><span class="toc-number">14.</span> <span class="toc-text">关联和动态关联</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#投影、聚合和分组"><span class="toc-number"></span> <span class="toc-text">投影、聚合和分组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#离线查询和子查询"><span class="toc-number"></span> <span class="toc-text">离线查询和子查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#事务和Session"><span class="toc-number"></span> <span class="toc-text">事务和Session</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#上下文相关的Session"><span class="toc-number"></span> <span class="toc-text">上下文相关的Session</span></a>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
