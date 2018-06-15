@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="心动CCC">
 <meta property="og:description" content="Hibernate (HQL操作)： HQL是我们在hibernate中是常用的一种检索方式。HQL（Hibernate Query Language）提供更加丰富灵活、更为强大的查询能力因此Hibernate将HQL查询方式立为官方推荐的标准查询方式，……">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-14T01:52:09.184Z">
+<meta property="og:updated_time" content="2018-06-15T14:54:03.213Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hibernate (HQL操作)">
 <meta name="twitter:description" content="Hibernate (HQL操作)： HQL是我们在hibernate中是常用的一种检索方式。HQL（Hibernate Query Language）提供更加丰富灵活、更为强大的查询能力因此Hibernate将HQL查询方式立为官方推荐的标准查询方式，……">
@@ -495,7 +495,7 @@ full join fetch 与right join fetch是没有任何意义的。
 .setFetchMode(&quot;enrolments&quot;, FetchMode.JOIN)
 
 .list();
-</code></pre><h2 id="投影、聚合和分组"><a href="#投影、聚合和分组" class="headerlink" title="投影、聚合和分组"></a>投影、聚合和分组</h2><p>投影运算实际上就是一个基于列的运算，通常用于投影到指定列（也就是过滤其他列，类似select子句的作用），还可以完成SQL语句中常用的分组、组筛选等功能。</p>
+</code></pre><h3 id="投影、聚合和分组"><a href="#投影、聚合和分组" class="headerlink" title="投影、聚合和分组"></a>投影、聚合和分组</h3><p>投影运算实际上就是一个基于列的运算，通常用于投影到指定列（也就是过滤其他列，类似select子句的作用），还可以完成SQL语句中常用的分组、组筛选等功能。</p>
 <p>Hibernate的条件过滤中使用Projection代表投影运算，Projection是一个接口，而Projections作为Projection的工厂，负责生成Projection对象。</p>
 <p>一旦产生了Projection对象之后，就可通过Criteria提供的setProjection(Projection projection)方法来进行投影运算。从该方法上看，每个Criteria只能接受一个投影运算，似乎无法进行多个投影运算，但实际上Hibernate又提供了一个ProjectionList类，该类是Projection的子类，并可以包含多个投影运算，通过这种方式即完成多个投影运算。</p>
 <p>因此，一个条件查询的投影运算通常有如下程序结构：</p>
@@ -582,7 +582,7 @@ full join fetch 与right join fetch是没有任何意义的。
 
 .list();
 </code></pre><p>如果程序使用Session的getExecutableCriteria()方法来执行DetachedCriteria对象，则它被当成离线查询使用；如果程序使用Property的系列方法来操作DetachedCriteria对象，则它被当成子查询使用。</p>
-<h2 id="事务和Session"><a href="#事务和Session" class="headerlink" title="事务和Session"></a>事务和Session</h2><p>1、Session和用户请求是一对一得关系，这是一种理想的Session管理模式。</p>
+<h3 id="事务和Session"><a href="#事务和Session" class="headerlink" title="事务和Session"></a>事务和Session</h3><p>1、Session和用户请求是一对一得关系，这是一种理想的Session管理模式。</p>
 <p>为了达到这种效果，推荐使用一个ThreadLocal变量，把Session绑定到处理客户端请求的线程上。这种方式可以让运行在该线程上的所有程序代码轻松地访问Session。也可以在一个ThreadLocal变量中保持事务上下文环境，不过这依赖于你所选择的数据库事务划分机制。这种实现模式被称为ThreadLocal Session和Open Session in View。</p>
 <p>工具类代码如下：<br>public class HibernateUtil</p>
 <p>{</p>
@@ -667,7 +667,7 @@ public static Session currentSession() throws HibernateException
 <p>保证Session处于打开状态有两种方法可以解决此问题：</p>
 <p>（1）在一个Web应用中，可以利用过滤器（Filter），在用户请求结束、页面生成结束时关闭Session。也就是保证在视图层一直打开Session，这就是所谓的Open Session in View成视图界面的过程中发生异常时，必须保证可以正确关闭Session，并结束事务。</p>
 <p>（2）使用业务逻辑层来准备数据，在业务逻辑层返回数据之前，业务逻辑层对每个所需集合调用Hibernate.initialize()方法，或者使用带fetch子句或FetchMethod.JOIN的查询，事先取得所有数据，并将这些数据封装成VO（值对象）集合，然后程序可以关闭Session了。业务逻辑层VO集传入视图层，让视图层只负责简单的显示逻辑。在这种模式下，可以让视图层和Hibernate API彻底分离，保证视图层不会出现持久层API，从而提供更好的解耦。</p>
-<h2 id="上下文相关的Session"><a href="#上下文相关的Session" class="headerlink" title="上下文相关的Session"></a>上下文相关的Session</h2><p>从Hibernate3.1开始，SessionFactory.getCurrentSession()的底层实现是可插拔的，Hibernate引入了CurrentSessionContext接口，并通过hibernate_current_session_context_class参数来管理上下文相关Session的底层实现。</p>
+<h3 id="上下文相关的Session"><a href="#上下文相关的Session" class="headerlink" title="上下文相关的Session"></a>上下文相关的Session</h3><p>从Hibernate3.1开始，SessionFactory.getCurrentSession()的底层实现是可插拔的，Hibernate引入了CurrentSessionContext接口，并通过hibernate_current_session_context_class参数来管理上下文相关Session的底层实现。</p>
 <p>CurrentSessionContext接口有如下3个实现类：</p>
 <p>org.hibernate.context.JTASessionContext：根据JTA来跟踪和界定上下文相关Session，这和最早的仅支持JTA的方法是完全一样的。</p>
 <p>org.hibernate.context.ThreadLocalSessionContext：通过当前正在执行的线程来跟踪和界定上下文相关Session，也就是和前面的HibernateUtil的Session维护模式相似。</p>
@@ -738,7 +738,7 @@ public static Session currentSession() throws HibernateException
         <p><span>本文标题:</span><a href="/2018/06/10/Hibernate (HQL操作)/">Hibernate (HQL操作)</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 心动CCC 的个人博客">心动CCC</a></p>
         <p><span>发布时间:</span>2018年06月10日 - 22时35分</p>
-        <p><span>最后更新:</span>2018年06月14日 - 09时52分</p>
+        <p><span>最后更新:</span>2018年06月15日 - 22时54分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/06/10/Hibernate (HQL操作)/" title="Hibernate (HQL操作)">http://yoursite.com/2018/06/10/Hibernate (HQL操作)/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/06/10/Hibernate (HQL操作)/　　作者: 心动CCC" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -776,7 +776,7 @@ public static Session currentSession() throws HibernateException
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#HQL介绍"><span class="toc-number">1.</span> <span class="toc-text">HQL介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HQL查询的from子句"><span class="toc-number">2.</span> <span class="toc-text">HQL查询的from子句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关联和连接"><span class="toc-number">3.</span> <span class="toc-text">关联和连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#隐式连接和显示连接有如下两点区别"><span class="toc-number">4.</span> <span class="toc-text">隐式连接和显示连接有如下两点区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HQL查询的select子句"><span class="toc-number">5.</span> <span class="toc-text">HQL查询的select子句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HQL查询的聚集函数"><span class="toc-number">6.</span> <span class="toc-text">HQL查询的聚集函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多态查询"><span class="toc-number">7.</span> <span class="toc-text">多态查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HQL查询的where子句"><span class="toc-number">8.</span> <span class="toc-text">HQL查询的where子句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#表达式"><span class="toc-number">9.</span> <span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#order-by子句"><span class="toc-number">10.</span> <span class="toc-text">order by子句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#子查询"><span class="toc-number">11.</span> <span class="toc-text">子查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#命名查询"><span class="toc-number">12.</span> <span class="toc-text">命名查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#条件查询"><span class="toc-number">13.</span> <span class="toc-text">条件查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关联和动态关联"><span class="toc-number">14.</span> <span class="toc-text">关联和动态关联</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#投影、聚合和分组"><span class="toc-number"></span> <span class="toc-text">投影、聚合和分组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#离线查询和子查询"><span class="toc-number"></span> <span class="toc-text">离线查询和子查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#事务和Session"><span class="toc-number"></span> <span class="toc-text">事务和Session</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#上下文相关的Session"><span class="toc-number"></span> <span class="toc-text">上下文相关的Session</span></a>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#HQL介绍"><span class="toc-number">1.</span> <span class="toc-text">HQL介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HQL查询的from子句"><span class="toc-number">2.</span> <span class="toc-text">HQL查询的from子句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关联和连接"><span class="toc-number">3.</span> <span class="toc-text">关联和连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#隐式连接和显示连接有如下两点区别"><span class="toc-number">4.</span> <span class="toc-text">隐式连接和显示连接有如下两点区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HQL查询的select子句"><span class="toc-number">5.</span> <span class="toc-text">HQL查询的select子句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HQL查询的聚集函数"><span class="toc-number">6.</span> <span class="toc-text">HQL查询的聚集函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多态查询"><span class="toc-number">7.</span> <span class="toc-text">多态查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HQL查询的where子句"><span class="toc-number">8.</span> <span class="toc-text">HQL查询的where子句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#表达式"><span class="toc-number">9.</span> <span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#order-by子句"><span class="toc-number">10.</span> <span class="toc-text">order by子句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#子查询"><span class="toc-number">11.</span> <span class="toc-text">子查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#命名查询"><span class="toc-number">12.</span> <span class="toc-text">命名查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#条件查询"><span class="toc-number">13.</span> <span class="toc-text">条件查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关联和动态关联"><span class="toc-number">14.</span> <span class="toc-text">关联和动态关联</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#投影、聚合和分组"><span class="toc-number">15.</span> <span class="toc-text">投影、聚合和分组</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#离线查询和子查询"><span class="toc-number"></span> <span class="toc-text">离线查询和子查询</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#事务和Session"><span class="toc-number">1.</span> <span class="toc-text">事务和Session</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#上下文相关的Session"><span class="toc-number">2.</span> <span class="toc-text">上下文相关的Session</span></a></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
