@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（九）再把内容页面渲染出来 | 心动CCC</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（九）再把内容页面渲染出来：  前情回顾在上一篇博文《Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（八）渲染一个列表出来先》中，我们已经成功的把一个列表给渲染出来了。我们从文章中留下的引子  应该知道，我们还是要做内容页面的。 好，这篇文章，就来做我们的内容页面：">
+<meta name="keywords" content="前端框架">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（九）再把内容页面渲染出来">
+<meta property="og:url" content="http://yoursite.com/2018/06/24/vue9/index.html">
+<meta property="og:site_name" content="心动CCC">
+<meta property="og:description" content="Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（九）再把内容页面渲染出来：  前情回顾在上一篇博文《Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（八）渲染一个列表出来先》中，我们已经成功的把一个列表给渲染出来了。我们从文章中留下的引子  应该知道，我们还是要做内容页面的。 好，这篇文章，就来做我们的内容页面：">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2018/06/24/vue9/vue9.1.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/24/vue9/vue9.2.png">
+<meta property="og:updated_time" content="2018-06-17T18:15:38.657Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（九）再把内容页面渲染出来">
+<meta name="twitter:description" content="Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（九）再把内容页面渲染出来：  前情回顾在上一篇博文《Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（八）渲染一个列表出来先》中，我们已经成功的把一个列表给渲染出来了。我们从文章中留下的引子  应该知道，我们还是要做内容页面的。 好，这篇文章，就来做我们的内容页面：">
+<meta name="twitter:image" content="http://yoursite.com/2018/06/24/vue9/vue9.1.png">
+  
+    <link rel="alternative" href="/atom.xml" title="心动CCC" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+      <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/head.jpg" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/" title="Hi Mate">心动CCC</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">很高兴遇见你  可以请你吃糖吗</p>
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/Home-gh-pages/H1">博客首页</a></li>
+                        
+                            <li><a href="/works">作品展示</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="mailto:492038605@qq.com" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/yjx-show/yjx-show.github.io.git" title="github">github</a>
+                            
+                                <a class="fl QQ" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=492038605&site=qq&menu=yes" title="QQ">QQ</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/javaweb框架/" style="font-size: 10px;">javaweb框架</a> <a href="/tags/前端框架/" style="font-size: 20px;">前端框架</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://www.jianshu.com/u/8569a7d98427">简书</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://www.senjoeson.xyz/">senjoeson</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">假装很陌生   其实很熟悉   很高兴遇见你</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">心动CCC</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/head.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me">心动CCC</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">很高兴遇见你  可以请你吃糖吗</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/Home-gh-pages/H1">博客首页</a></li>
+                
+                    <li><a href="/works">作品展示</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="mailto:492038605@qq.com" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/yjx-show/yjx-show.github.io.git" title="github">github</a>
+                    
+                        <a class="QQ" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=492038605&site=qq&menu=yes" title="QQ">QQ</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-vue9" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/06/24/vue9/" class="article-date">
+      <time datetime="2018-06-24T09:35:37.000Z" itemprop="datePublished">2018-06-24</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（九）再把内容页面渲染出来
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Vue/">Vue</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端框架/">前端框架</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><strong> Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（九）再把内容页面渲染出来：</strong> <excerpt in="" index="" |="" 首页摘要=""></excerpt></p>
+<p>前情回顾<br>在上一篇博文《Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（八）渲染一个列表出来先》中，我们已经成功的把一个列表给渲染出来了。我们从文章中留下的引子 <router-link :to="'/content/' + i.id"> 应该知道，我们还是要做内容页面的。</router-link></p>
+<p>好，这篇文章，就来做我们的内容页面：</p>
+<a id="more"></a>
+<p><the rest="" of="" contents="" |="" 余下全文=""><br>正文……</the></p>
+<p>编写内容页面<br>照旧，先看东西，再说话：</p>
+<pre><code class="bash">&lt;template&gt;
+  &lt;div&gt;
+    &lt;myHeader&gt;&lt;/myHeader&gt;
+    &lt;h2 v-text=<span class="string">"dat.title"</span>&gt;&lt;/h2&gt;
+    &lt;p&gt;作者：{{dat.author.loginname}}　　发表于：{{$utils.goodTime(dat.create_at)}}&lt;/p&gt;
+    &lt;hr&gt;
+    &lt;article v-html=<span class="string">"dat.content"</span>&gt;&lt;/article&gt;
+    &lt;h3&gt;网友回复：&lt;/h3&gt;
+    &lt;ul&gt;
+      &lt;li v-for=<span class="string">"i in dat.replies"</span>&gt;
+        &lt;p&gt;评论者：{{i.author.loginname}}　　评论于：{{$utils.goodTime(i.create_at)}}&lt;/p&gt;
+        &lt;article v-html=<span class="string">"i.content"</span>&gt;&lt;/article&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;myFooter&gt;&lt;/myFooter&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+import myHeader from <span class="string">'../components/header.vue'</span>
+import myFooter from <span class="string">'../components/footer.vue'</span>
+<span class="built_in">export</span> default {
+  components: { myHeader, myFooter },
+  <span class="function"><span class="title">data</span></span> () {
+    <span class="built_in">return</span> {
+      id: this.<span class="variable">$route</span>.params.id,
+      dat: {}
+    }
+  },
+  <span class="function"><span class="title">created</span></span> () {
+    this.getData()
+  },
+  methods: {
+    <span class="function"><span class="title">getData</span></span> () {
+      this.<span class="variable">$api</span>.get(<span class="string">'topic/'</span> + this.id, null, r =&gt; {
+        this.dat = r.data
+      })
+    }
+  }
+}
+&lt;/script&gt;
+</code></pre>
+<p>好，我们这边把代码写进 src/page/content.vue 文件。然后保存，我在我们先前的列表页面随便点开一篇文章，然后我们看下结果：<br><img src="/2018/06/24/vue9/vue9.1.png" alt="vue9.1"><br><img src="/2018/06/24/vue9/vue9.2.png" alt="vue9.2"><br>好，按照我们的需求已经渲染出来了。</p>
+<h4 id="重复一下，样式，我就不管了，自己去写。"><a href="#重复一下，样式，我就不管了，自己去写。" class="headerlink" title="重复一下，样式，我就不管了，自己去写。"></a>重复一下，样式，我就不管了，自己去写。</h4><h1 id="说明一下里面的重点"><a href="#说明一下里面的重点" class="headerlink" title="说明一下里面的重点"></a>说明一下里面的重点</h1><h3 id="template-部分"><a href="#template-部分" class="headerlink" title="template 部分"></a>template 部分</h3><p>其他的内容，我们在列表页面已经见过了。这里第一次出现 <article v-html="dat.content"></article> 这个东西。</p>
+<p>同样是渲染内容， v-html 和 v-text 有什么区别呢？其实区别非常简单，v-text 会把所有的内容当成字符串给直接输出出来。而 v-html 会把字符串给转换为 html 标记语言给渲染出来。这部门更多内容，请参考：<a href="https://cn.vuejs.org/v2/api/#v-html" target="_blank" rel="noopener">https://cn.vuejs.org/v2/api/#v-html</a></p>
+<p>注意了！ 我们在列表中，我们使用的是 Header 注意的组件命名方式，为什么我这边用了 myHeader 注意的组件命名方式呢？</p>
+<p>其实，我想说明的是，我们不要使用 html 本身就支持的标签名称来自定义我们的组件，这容易导致混乱，最好，是像内容页里面这样，使用自定义的标签名。</p>
+<h4 id="好吧，我承认，就是我先前写忘掉了，不要鄙视我-但我感觉这里强调一下也好，省得你以后也忘记了。"><a href="#好吧，我承认，就是我先前写忘掉了，不要鄙视我-但我感觉这里强调一下也好，省得你以后也忘记了。" class="headerlink" title="好吧，我承认，就是我先前写忘掉了，不要鄙视我~~但我感觉这里强调一下也好，省得你以后也忘记了。"></a>好吧，我承认，就是我先前写忘掉了，不要鄙视我~~但我感觉这里强调一下也好，省得你以后也忘记了。</h4><h1 id="script-部分"><a href="#script-部分" class="headerlink" title="script 部分"></a>script 部分</h1><p>  代码基本上是一致的，重点是 id: this.$route.params.id, 这一句。</p>
+<p>  还记得我们先前是怎么配置路由的吗？忘记了？点击 Vue2+VueRouter2+Webpack+Axios 构建项目实战2017重制版（四）调整 App.vue 和 router 路由 直达。</p>
+<p>  我们是这么配置的：</p>
+<pre><code class="bash"><span class="built_in">export</span> default new Router({
+  routes: [
+    {
+      path: <span class="string">'/'</span>,
+      component: Index
+    }, {
+      path: <span class="string">'/content/:id'</span>,
+      component: Content
+    }
+  ]
+})
+</code></pre>
+<p>重点：path: ‘/content/:id’, 中，我们使用了 :id 这个东西。这是动态路由匹配。参考文档： 《动态路由匹配》</p>
+<p>我们需要从我们的 url 中，来获取我们的 id 然后根据这个 id 来进行数据的查询。</p>
+<p>好，想起来了。那么我们已经在 url 包含了这个 id 了。</p>
+<p><a href="http://localhost:8080/#/content/58eee565a92d341e48cfe7fc" target="_blank" rel="noopener">http://localhost:8080/#/content/58eee565a92d341e48cfe7fc</a><br>1<br>如上：58eee565a92d341e48cfe7fc 这个就是 ID ，奇怪是奇怪了点，但确实就是 id。</p>
+<p>我们如何取出来呢？</p>
+<p>不用想很多复杂的事情，vuerouter 早就给我们准备了解决方法了。</p>
+<p>我们可以在项目中打印如下代码：</p>
+<h4 id="console-log-this-route"><a href="#console-log-this-route" class="headerlink" title="console.log(this.$route)"></a>console.log(this.$route)</h4><h4 id="擦，博客写到这里-cnodejs-org-网站挂了。。。那就暂时不放我的打印结果图了，大家可以看下官方文档-路由信息对象的属性"><a href="#擦，博客写到这里-cnodejs-org-网站挂了。。。那就暂时不放我的打印结果图了，大家可以看下官方文档-路由信息对象的属性" class="headerlink" title="擦，博客写到这里 cnodejs.org 网站挂了。。。那就暂时不放我的打印结果图了，大家可以看下官方文档 路由信息对象的属性"></a>擦，博客写到这里 cnodejs.org 网站挂了。。。那就暂时不放我的打印结果图了，大家可以看下官方文档 路由信息对象的属性</h4><p>回头，你也可以自己打印了看下，有助于你自己分析理解问题。</p>
+<p>好了，除了上面的问题，我们再看下我们的接口数据调用，代码如下：</p>
+<pre><code class="bash">this.<span class="variable">$api</span>.get(<span class="string">'topic/'</span> + this.id, null, r =&gt; {
+  this.dat = r.data
+})
+</code></pre>
+<p>等于没什么要说的，就是把数据拿过来了而已，需要注意的是，我们的请求的接口地址是根据 id 进行变化的。所以，我这边采用了字符串拼接的方法，’topic/‘ + this.id 来得到我们真正想要请求的接口数据。</p>
+<p>好，到这里为止，我们已经非常顺利的把列表页面和内容页面已经渲染出来了。希望你也成功了！</p>
+<p>原文首发地址：<a href="http://blog.csdn.net/fungleo/article/details/53171614" target="_blank" rel="noopener">http://blog.csdn.net/fungleo/article/details/53171614</a></p>
+
+      
+      
+        <div class="page-reward">
+          <p><a href="javascript:void(0)" onclick="dashangToggle()" class="dashang">赏</a></p>
+          <div class="hide_box"></div>
+          <div class="shang_box">
+            <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+            <div class="shang_tit">
+              <p>纯属好玩</p>
+            </div>
+            <div class="shang_payimg">
+              <img src="/img/alipayimg.jpg" alt="扫码支持" title="扫一扫" />
+            </div>
+              <div class="pay_explain">扫码打赏</div>
+            <div class="shang_payselect">
+              
+                <div class="pay_item checked" data-id="alipay">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/alipay.png" alt="支付宝" /></span>
+                </div>
+              
+              
+                <div class="pay_item" data-id="wechat">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/weixin.png" alt="微信" /></span>
+                </div>
+              
+            </div>
+            <div class="shang_info">
+              <p>打开<span id="shang_pay_txt">支付宝</span>扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+        <script type="text/javascript">
+          $(".pay_item").click(function(){
+            $(this).addClass('checked').siblings('.pay_item').removeClass('checked');
+            var dataid=$(this).attr('data-id');
+            $(".shang_payimg img").attr("src","/img/"+dataid+"img.jpg");
+            $("#shang_pay_txt").text(dataid=="alipay"?"支付宝":"微信");
+          });
+          function dashangToggle(){
+            
+            $(".hide_box").fadeToggle();
+            $(".shang_box").fadeToggle();
+          }
+        </script>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2018/06/24/vue9/">Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（九）再把内容页面渲染出来</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 心动CCC 的个人博客">心动CCC</a></p>
+        <p><span>发布时间:</span>2018年06月24日 - 17时35分</p>
+        <p><span>最后更新:</span>2018年06月18日 - 02时15分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/06/24/vue9/" title="Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（九）再把内容页面渲染出来">http://yoursite.com/2018/06/24/vue9/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/06/24/vue9/　　作者: 心动CCC" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a href="/2018/06/25/vue10/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（十）打包项目并发布到子目录
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/06/23/vue8/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（八）渲染一个列表出来先</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#重复一下，样式，我就不管了，自己去写。"><span class="toc-number">1.</span> <span class="toc-text">重复一下，样式，我就不管了，自己去写。</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#说明一下里面的重点"><span class="toc-number"></span> <span class="toc-text">说明一下里面的重点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#template-部分"><span class="toc-number"></span> <span class="toc-text">template 部分</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#好吧，我承认，就是我先前写忘掉了，不要鄙视我-但我感觉这里强调一下也好，省得你以后也忘记了。"><span class="toc-number">1.</span> <span class="toc-text">好吧，我承认，就是我先前写忘掉了，不要鄙视我~~但我感觉这里强调一下也好，省得你以后也忘记了。</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#script-部分"><span class="toc-number"></span> <span class="toc-text">script 部分</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#console-log-this-route"><span class="toc-number">1.</span> <span class="toc-text">console.log(this.$route)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#擦，博客写到这里-cnodejs-org-网站挂了。。。那就暂时不放我的打印结果图了，大家可以看下官方文档-路由信息对象的属性"><span class="toc-number">2.</span> <span class="toc-text">擦，博客写到这里 cnodejs.org 网站挂了。。。那就暂时不放我的打印结果图了，大家可以看下官方文档 路由信息对象的属性</span></a></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+        <div id="gitments"></div>
+<script src="/js/gitment.browser.js"></script>
+<script>
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      owner: 'yjx-show',
+      repo: 'yjx-show.github.io',
+      oauth: {
+        client_id: '637964a4506d86e3b0cf',
+        client_secret: 'e4200cca59e5de9a2cd78c53fbe1a7c37157e9a0',
+      },
+    })
+    gitment.render('gitments')
+</script>
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2018/06/25/vue10/" title="上一篇: Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（十）打包项目并发布到子目录">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2018/06/23/vue8/" title="下一篇: Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（八）渲染一个列表出来先">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/06/25/vue10/">Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（十）打包项目并发布到子目录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/24/vue9/">Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（九）再把内容页面渲染出来</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/23/vue8/">Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（八）渲染一个列表出来先</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/22/vue7/">Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（七）初识 *.vue 文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/21/vue6/">Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（六）将接口用 webpack 代理到本地</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/20/vue5/">Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（五）配置 Axios api 接口调用文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/19/vue4/">Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（四）调整 App.vue 和 router 路由</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/18/vue3/">Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（三）认识项目所有文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/17/vue2/">Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（二）安装 nodejs 环境以及 vue-cli 构建初始项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/16/vue1/">Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（一）基础知识概述</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/13/spring框架/">Spring框架</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/10/hibernate注解详解/">Hibernate注解详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/10/Hibernate (HQL操作)/">Hibernate (HQL操作)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/08/struts2框架核心技术总结/">Struts2框架</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2018 心动CCC
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/yjx-show/yjx-show.github.io" target="_blank">心动CCC</a> by 心动CCC
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >心心到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 24;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>

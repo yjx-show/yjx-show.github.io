@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（五）配置 Axios api 接口调用文件 | 心动CCC</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（五）配置 Axios api 接口调用文件：  在上一篇《Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（四）调整 App.vue 和 router 路由》，我们通过配置基本的信息，已经让我们的项目能够正常的跑起来了。但是，这里还没有涉及到 AJAX 请求接口的内容。 vue 本身">
+<meta name="keywords" content="前端框架">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（五）配置 Axios api 接口调用文件">
+<meta property="og:url" content="http://yoursite.com/2018/06/20/vue5/index.html">
+<meta property="og:site_name" content="心动CCC">
+<meta property="og:description" content="Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（五）配置 Axios api 接口调用文件：  在上一篇《Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（四）调整 App.vue 和 router 路由》，我们通过配置基本的信息，已经让我们的项目能够正常的跑起来了。但是，这里还没有涉及到 AJAX 请求接口的内容。 vue 本身">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2018/06/20/vue5/vue5.1.png">
+<meta property="og:updated_time" content="2018-06-17T18:15:38.633Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（五）配置 Axios api 接口调用文件">
+<meta name="twitter:description" content="Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（五）配置 Axios api 接口调用文件：  在上一篇《Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（四）调整 App.vue 和 router 路由》，我们通过配置基本的信息，已经让我们的项目能够正常的跑起来了。但是，这里还没有涉及到 AJAX 请求接口的内容。 vue 本身">
+<meta name="twitter:image" content="http://yoursite.com/2018/06/20/vue5/vue5.1.png">
+  
+    <link rel="alternative" href="/atom.xml" title="心动CCC" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+      <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/head.jpg" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/" title="Hi Mate">心动CCC</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">很高兴遇见你  可以请你吃糖吗</p>
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/Home-gh-pages/H1">博客首页</a></li>
+                        
+                            <li><a href="/works">作品展示</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="mailto:492038605@qq.com" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/yjx-show/yjx-show.github.io.git" title="github">github</a>
+                            
+                                <a class="fl QQ" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=492038605&site=qq&menu=yes" title="QQ">QQ</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/javaweb框架/" style="font-size: 10px;">javaweb框架</a> <a href="/tags/前端框架/" style="font-size: 20px;">前端框架</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://www.jianshu.com/u/8569a7d98427">简书</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://www.senjoeson.xyz/">senjoeson</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">假装很陌生   其实很熟悉   很高兴遇见你</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">心动CCC</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/head.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me">心动CCC</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">很高兴遇见你  可以请你吃糖吗</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/Home-gh-pages/H1">博客首页</a></li>
+                
+                    <li><a href="/works">作品展示</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="mailto:492038605@qq.com" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/yjx-show/yjx-show.github.io.git" title="github">github</a>
+                    
+                        <a class="QQ" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=492038605&site=qq&menu=yes" title="QQ">QQ</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-vue5" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/06/20/vue5/" class="article-date">
+      <time datetime="2018-06-20T09:35:37.000Z" itemprop="datePublished">2018-06-20</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（五）配置 Axios api 接口调用文件
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Vue/">Vue</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端框架/">前端框架</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><strong> Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（五）配置 Axios api 接口调用文件：</strong> <excerpt in="" index="" |="" 首页摘要=""></excerpt></p>
+<p>在上一篇《Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（四）调整 App.vue 和 router 路由》，我们通过配置基本的信息，已经让我们的项目能够正常的跑起来了。但是，这里还没有涉及到 AJAX 请求接口的内容。</p>
+<p>vue 本身是不支持 ajax 接口请求的，所以我们需要安装一个接口请求的 npm 包，来使我们的项目拥有这个功能。</p>
+<a id="more"></a>
+<p><the rest="" of="" contents="" |="" 余下全文=""><br>正文……</the></p>
+<p>这其实是一个重要的 unix 思想，就是一个工具只做好一件事情，你需要额外的功能的时候，则需要安装对应的软件来执行。如果你以前是一个 jquery 重度用户，那么可能理解这个思想一定要深入的理解。</p>
+<p>支持 ajax 的工具有很多。一开始，我使用的是 superagent 这个工具。但是我发现近一年来，绝大多数的教程都是使用的 axios 这个接口请求工具。其实，这本来是没有什么差别的。但是为了防止你们在看了我的博文和其他的文章之后，产生理念上的冲突。因此，我也就改用 axios 这个工具了。</p>
+<p>本身， axios 这个工具已经做了很好的优化和封装。但是，在使用的时候，还是略显繁琐，因此，我重新封装了一下。当然，更重要的是，封装 axios 这个工具是为了和我以前写的代码的兼容。不过我封装得很好，也推荐大家使用。</p>
+<h1 id="封装-axios-工具，编辑-src-api-index-js-文件"><a href="#封装-axios-工具，编辑-src-api-index-js-文件" class="headerlink" title="封装 axios 工具，编辑 src/api/index.js 文件"></a>封装 axios 工具，编辑 src/api/index.js 文件</h1><p>首先，我们要使用 axios 工具，就必须先安装 axios 工具。执行下面的命令进行安装</p>
+<h5 id="npm-install-axios-D"><a href="#npm-install-axios-D" class="headerlink" title="npm install axios -D"></a>npm install axios -D</h5><p>这样，我们就安装好了 axios 工具了。</p>
+<p>还记得我们在第三篇博文中整理的系统结构吗？我们新建了一个 src/api/index.js 这个空文本文件，就那么放在那里了。这里，我们给它填写上内容。</p>
+<pre><code class="bash">// 配置API接口地址
+var root = <span class="string">'https://cnodejs.org/api/v1'</span>
+// 引用axios
+var axios = require(<span class="string">'axios'</span>)
+// 自定义判断元素类型JS
+<span class="keyword">function</span> toType (obj) {
+  <span class="built_in">return</span> ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase()
+}
+// 参数过滤函数
+<span class="keyword">function</span> filterNull (o) {
+  <span class="keyword">for</span> (var key <span class="keyword">in</span> o) {
+    <span class="keyword">if</span> (o[key] === null) {
+      delete o[key]
+    }
+    <span class="keyword">if</span> (toType(o[key]) === <span class="string">'string'</span>) {
+      o[key] = o[key].trim()
+    } <span class="keyword">else</span> <span class="keyword">if</span> (toType(o[key]) === <span class="string">'object'</span>) {
+      o[key] = filterNull(o[key])
+    } <span class="keyword">else</span> <span class="keyword">if</span> (toType(o[key]) === <span class="string">'array'</span>) {
+      o[key] = filterNull(o[key])
+    }
+  }
+  <span class="built_in">return</span> o
+}
+/*
+  接口处理函数
+  这个函数每个项目都是不一样的，我现在调整的是适用于
+  https://cnodejs.org/api/v1 的接口，如果是其他接口
+  需要根据接口的参数进行调整。参考说明文档地址：
+  https://cnodejs.org/topic/5378720ed6e2d16149fa16bd
+  主要是，不同的接口的成功标识和失败提示是不一致的。
+  另外，不同的项目的处理方法也是不一致的，这里出错就是简单的alert
+*/
+
+<span class="keyword">function</span> apiAxios (method, url, params, success, failure) {
+  <span class="keyword">if</span> (params) {
+    params = filterNull(params)
+  }
+  axios({
+    method: method,
+    url: url,
+    data: method === <span class="string">'POST'</span> || method === <span class="string">'PUT'</span> ? params : null,
+    params: method === <span class="string">'GET'</span> || method === <span class="string">'DELETE'</span> ? params : null,
+    baseURL: root,
+    withCredentials: <span class="literal">false</span>
+  })
+  .<span class="keyword">then</span>(<span class="keyword">function</span> (res) {
+    <span class="keyword">if</span> (res.data.success === <span class="literal">true</span>) {
+      <span class="keyword">if</span> (success) {
+        success(res.data)
+      }
+    } <span class="keyword">else</span> {
+      <span class="keyword">if</span> (failure) {
+        failure(res.data)
+      } <span class="keyword">else</span> {
+        window.alert(<span class="string">'error: '</span> + JSON.stringify(res.data))
+      }
+    }
+  })
+  .catch(<span class="keyword">function</span> (err) {
+    <span class="built_in">let</span> res = err.response
+    <span class="keyword">if</span> (err) {
+      window.alert(<span class="string">'api error, HTTP CODE: '</span> + res.status)
+    }
+  })
+}
+
+// 返回在vue模板中的调用接口
+<span class="built_in">export</span> default {
+  get: <span class="keyword">function</span> (url, params, success, failure) {
+    <span class="built_in">return</span> apiAxios(<span class="string">'GET'</span>, url, params, success, failure)
+  },
+  post: <span class="keyword">function</span> (url, params, success, failure) {
+    <span class="built_in">return</span> apiAxios(<span class="string">'POST'</span>, url, params, success, failure)
+  },
+  put: <span class="keyword">function</span> (url, params, success, failure) {
+    <span class="built_in">return</span> apiAxios(<span class="string">'PUT'</span>, url, params, success, failure)
+  },
+  delete: <span class="keyword">function</span> (url, params, success, failure) {
+    <span class="built_in">return</span> apiAxios(<span class="string">'DELETE'</span>, url, params, success, failure)
+  }
+}
+</code></pre>
+<p>好，我们写好这个文件之后，保存。</p>
+<h4 id="2017年10月20日补充，删除了评论中有人反映会出错的-return-，确实这个-return-是没有什么作用的。不过我这边确实没出错。没关系啦，本来就没啥用，只是一个以前的不好的习惯代码。"><a href="#2017年10月20日补充，删除了评论中有人反映会出错的-return-，确实这个-return-是没有什么作用的。不过我这边确实没出错。没关系啦，本来就没啥用，只是一个以前的不好的习惯代码。" class="headerlink" title="2017年10月20日补充，删除了评论中有人反映会出错的 return ，确实这个 return 是没有什么作用的。不过我这边确实没出错。没关系啦，本来就没啥用，只是一个以前的不好的习惯代码。"></a>2017年10月20日补充，删除了评论中有人反映会出错的 return ，确实这个 return 是没有什么作用的。不过我这边确实没出错。没关系啦，本来就没啥用，只是一个以前的不好的习惯代码。</h4><p>有关 axios 的更多内容，请参考官方 github： <a href="https://github.com/mzabriskie/axios" target="_blank" rel="noopener">https://github.com/mzabriskie/axios</a> ，中文资料自行百度。</p>
+<p>但就是这样，我们还不能再 vue 模板文件中使用这个工具，还需要调整一下 main.js 文件。</p>
+<h1 id="调整-main-js-绑定-api-index-js-文件"><a href="#调整-main-js-绑定-api-index-js-文件" class="headerlink" title="调整 main.js 绑定 api/index.js 文件"></a>调整 main.js 绑定 api/index.js 文件</h1><p>这次呢，我们没有上来就调整 main.js 文件，因为原始文件就配置得比较好，我就没有刻意的想要调整它。</p>
+<p>原始文件如下：</p>
+<pre><code class="bash">import Vue from <span class="string">'vue'</span>
+import App from <span class="string">'./App'</span>
+import router from <span class="string">'./router'</span>
+
+Vue.config.productionTip = <span class="literal">false</span>
+
+/* eslint-disable no-new */
+new Vue({
+  el: <span class="string">'#app'</span>,
+  router,
+  template: <span class="string">'&lt;App/&gt;'</span>,
+  components: { App }
+})
+</code></pre>
+<p>我们插入以下代码：</p>
+<pre><code class="bash">// 引用API文件
+import api from <span class="string">'./api/index.js'</span>
+// 将API方法绑定到全局
+Vue.prototype.<span class="variable">$api</span> = api
+</code></pre>
+<p>也就是讲代码调整为：</p>
+<pre><code class="bash">import Vue from <span class="string">'vue'</span>
+import App from <span class="string">'./App'</span>
+import router from <span class="string">'./router'</span>
+
+// 引用API文件
+import api from <span class="string">'./api/index.js'</span>
+// 将API方法绑定到全局
+Vue.prototype.<span class="variable">$api</span> = api
+
+Vue.config.productionTip = <span class="literal">false</span>
+
+/* eslint-disable no-new */
+new Vue({
+  el: <span class="string">'#app'</span>,
+  router,
+  template: <span class="string">'&lt;App/&gt;'</span>,
+  components: { App }
+})
+</code></pre>
+<p>好了，这样，我们就可以在项目中使用我们封装的 api 接口调用文件了。</p>
+<h1 id="测试一下看看能不能调通"><a href="#测试一下看看能不能调通" class="headerlink" title="测试一下看看能不能调通"></a>测试一下看看能不能调通</h1><p>我们来修改一下 src/page/index.vue 文件，将代码调整为以下代码：</p>
+<pre><code class="bash">&lt;template&gt;
+  &lt;div&gt;index page&lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+<span class="built_in">export</span> default {
+  <span class="function"><span class="title">created</span></span> () {
+    this.<span class="variable">$api</span>.get(<span class="string">'topics'</span>, null, r =&gt; {
+      console.log(r)
+    })
+  }
+}
+&lt;/script&gt;
+</code></pre>
+<p>好，这里是调用 cnodejs.org 的 topics 列表接口，并且将结果打印出来。</p>
+<p>我们在浏览器中打开控制台，看看 console 下面有没有输出入下图一样的内容。如果有的话，就说明我们的接口配置已经成功了。<br><img src="/2018/06/20/vue5/vue5.1.png" alt="vue5.1"></p>
+<p>如果文章由于我学识浅薄，导致您发现有严重谬误的地方，请一定在评论中指出，我会在第一时间修正我的博文，以避免误人子弟。</p>
+<p>本文由 FungLeo 原创，允许转载，但转载必须保留首发链接。</p>
+<p>版权声明：本文为 FengCms FungLeo 原创文章，允许转载，但转载必须注明出处并附带首发链接    <a href="https://blog.csdn.net/FungLeo/article/details/77601270" target="_blank" rel="noopener">https://blog.csdn.net/FungLeo/article/details/77601270</a><br>文章标签： ajax vue axios cnodejs webpack<br>个人分类： vuejs<br>所属专栏： FungLeo的前端笔记 vue+webpack+axios 入门教程</p>
+<p>想对作者说点什么？ 我来说一句<br> qq_38317302<br>qq_383173022018-06-04 17:37:38#46楼<br>成功后执行的函数该怎么去写？在我需要的页面中<br>查看回复(1)<br>qq_38317302<br>qq_383173022018-06-04 17:34:00#45楼<br>确实能够实现 但是我有一个问题想请问一下作者，就是封装了的这个axios之后，在页面调用，然后我就不能在调用的页面写.then()方法了?还是因为我没有搞懂的原因，因为我想去做判断。在我需要的地方，但是好像写了没有起效果。<br>查看回复(1)<br>qq_31016459<br>默默道来2018-04-10 10:26:19#44楼<br>博主 您好，我看了您这一节的内容，很受用，我有一个问题，想向您请教一下。我对传入的参数用参数过滤函数进行过滤 在请求的时候 就看不到穿过的参数了，我不用那个参数过滤函数就好了，参数就能传过去了。我想问一下，参数过滤函数有什么用处？是对那种不用传参的接口参数的处理吗？为什么这样的参数 被这个参数处理成null了？{passport_cookie_token: “3a30e7ef117b0b095f93f36f2414d350”, page: 1, rows: 10}<br>查看回复(2)<br>qq_37290641<br>qq_372906412018-03-21 10:36:59#43楼<br>[html] view plain copy<br>Request URL:<a href="https://cnodejs.org/api/v1/topic" target="_blank" rel="noopener">https://cnodejs.org/api/v1/topic</a><br>Request Method:GET<br>Status Code:404 Not Found<br>Remote Address:123.59.77.142:443<br>Referrer Policy:no-referrer-when-downgrade<br>查看回复(2)<br>weixin_39599564<br>weixin_395995642018-03-20 15:04:48#42楼<br>vue.esm.js?efeb:591 [Vue warn]: Error in created hook: “TypeError: Cannot read property ‘get’ of undefined” vue.esm.js?efeb:1741 TypeError: Cannot read property ‘get’ of undefined 不知道怎么回事，我手打进去也是这么报错，复制你的代码进去也是报错，醉了，醉了的<br>查看回复(1)<br>查看 107 条热评<br>浅谈Vue.js与后端API交互——axios的应用<br>Vue.js中应用axios进行与后端API的交互</p>
+<p> joyce_lcy joyce_lcy</p>
+<p>2017-12-22 15:25:48</p>
+<p>阅读数：4167</p>
+<p>vue axios全攻略<br>不再继续维护vue-resource，并推荐大家使用 axios 开始，axios 被越来越多的人所了解。本来想在网上找找详细攻略，突然发现，axios 的官方文档本身就非常详细！！有这个还要什么自行…</p>
+<p> qq_36380426 qq_36380426</p>
+<p>2017-08-16 09:44:18</p>
+<p>阅读数：1425</p>
+<p>vue2.0 获取从http接口中获取数据,组件开发,路由配置 - CSDN博客<br>自定义菜单view类型按钮后,微信客户端将会打开开发者在按钮中填写的url值 (即…vue cli引入微信sdk,完成微信接口调用——获取微信access_token和jsapi_ticket(六…</p>
+<p>2018-5-28</p>
+<p>Vue开发环境下调用接口跨域问题 - CSDN博客<br>配置完成后再调接口时如:’<a href="http://xxxxxx.com/login&#39;可以简写成&#39;/api/login&#39;...Vuex中mutations和actions的区别" target="_blank" rel="noopener">http://xxxxxx.com/login&#39;可以简写成&#39;/api/login&#39;...Vuex中mutations和actions的区别</a> 阅读量:3356 获取URL中的某个参数/删除URL中…</p>
+<p>2018-6-13</p>
+<p>血糖高不要慌，每天吃点常见的“它”，平稳降血糖，身体健康<br>养和 · 顶新<br>vue全局配置axios<br>由于尤雨溪之前在微博发布消息，不再继续维护vue-resource，并推荐大家开始使用 axios 。所以在现在的项目中就试着使用了axios Axios 是一个基于 promise 的 HTTP 库…</p>
+<p> baidu_38492440 baidu_38492440</p>
+<p>2017-10-10 16:05:39</p>
+<p>阅读数：2601</p>
+<p>VUE 接口路径小则 - wide288 的短文 - CSDN博客<br>VUE 接口 url 中写的是后端的接口路径而 moco 的 json 接口定义中的接口地址也是写后端接口路径。</p>
+<p>2018-1-16</p>
+<p>…构建项目实战2017重制版(五)配置 Axios api 接口调用文件 - …<br>// 返回在vue模板中的调用接口 export default { get: function (url, params, success, failure) { return apiAxios(‘GET’, url, params, success, failure…</p>
+<p>2018-6-6</p>
+<p>Vue2+VueRouter2+webpack+Axios 构建项目实战（七）重构API文件为使用axios<br>Vue2+VueRouter2+webpack+Axios 构建项目实战（七）重构API文件为使用axios前言我们在前面的教程Vue2+VueRouter2+webpack 构建项目实战（四）接通a…</p>
+<p> FungLeo FungLeo</p>
+<p>2017-05-10 17:55:15</p>
+<p>阅读数：5641</p>
+<p>Vue.js学习笔记：axios<br>Vue.js axios</p>
+<p> qtwwyl qtwwyl</p>
+<p>2017-04-17 11:36:32</p>
+<p>阅读数：1851</p>
+<p>Vue1.0接口请求之vue-resource全攻略 - CSDN博客<br>// 基于全局Vue对象使用http Vue.http.get(‘/someUrl’, [options]).then(success…响应失败时调用,而catch则是在整个请求到响应过程中,只要程序出错了就会被调…</p>
+<p>2018-5-18</p>
+<p>Vue2+VueRouter2+webpack 构建项目实战(四)接通api,先…_CSDN博客<br>// 返回在vue模板中的调用接口 export default { get: function(url, params, success, failure) { return _api_base(‘GET’, root + ‘/‘ + url, params…</p>
+<p>2018-6-13</p>
+<p>Vue 调用接口流程<br>自学成才 Vue 以前只接触过普通的HTML,JS,CSS 等传统页面开发，现在公司使用了这个Vue.js的框架 实在让人脑袋疼，一点思路都没有 现在把刚悟透的Vue调用接口的流程，当然我们用的事饿…</p>
+<p> chinasun2015 chinasun2015</p>
+<p>2018-02-01 16:06:13</p>
+<p>阅读数：3706</p>
+<p>血糖高不要慌，每天吃点常见的“它”，平稳降血糖，身体健康<br>养和 · 顶新<br>vue2.0 获取从http接口中获取数据,组件开发,路由配置 - CSDN博客<br>vue 2.0 从接口中获取数据 &lt;template&gt; &lt;div id=”admins”&gt; &lt;h1&gt;I am a title.&lt;/h1…</p>
+<p>2018-5-22</p>
+<p>Vue项目实战(五)配置 Axios api 接口调用文件 - CSDN博客<br>Vue项目实战(五)配置 Axios api 接口调用文件 这一篇介绍v配置 Axios api 接口调用文件,公众号已经准备了vue实战教程,如果您有需要,可以在公众号回复“vue”获取…</p>
+<p>2018-6-6</p>
+<p>vue 请求后台数据<br>需要引用vue-resource安装请参考<a href="https://github.com/pagekit/vue-resource官方文档在入口函数中加入import" target="_blank" rel="noopener">https://github.com/pagekit/vue-resource官方文档在入口函数中加入import</a> VueResource from ‘vue…</p>
+<p> vergilgeekopen vergilgeekopen</p>
+<p>2017-04-02 23:11:42</p>
+<p>阅读数：38835</p>
+<p>Vue2+VueRouter2+webpack 构建项目实战（四）接通api，先渲染个列表<br>Vue2+VueRouter2+webpack 构建项目实战（四）接通api，先渲染个列表前情回顾《Vue2+VueRouter2+webpack 构建项目实战（一）准备工作》《Vue2+VueRou…</p>
+<p> FungLeo FungLeo</p>
+<p>2016-11-17 16:41:36</p>
+<p>阅读数：22351</p>
+<p>Vue2接口地址配置(webpack) - CSDN博客<br>我们前端调用后端给的接口也是在局域网内部的。但是,当… FungLeo 2017-…vue添加axios,并且指定baseurl 本文主要介绍如何在vue项目中引入axios,并且在使用…</p>
+<p>2018-6-7</p>
+<p>undefined<br>Vue的一些API理解整理，如何一次引入多次调用<br>欢迎使用Markdown编辑器写博客本Markdown编辑器使用StackEdit修改而来，用它写博客，将会带来全新的体验哦： Markdown和扩展Markdown简洁的语法 代码块高亮 图片链接和…</p>
+<p> gang456789 gang456789</p>
+<p>2017-09-12 14:03:10</p>
+<p>阅读数：2856</p>
+<p>第十章：vue2中axios请求服务端数据<br>中文文档 一、关于axios的安装 1、利用npm安装npm install axios –save 2、利用bower安装bower install axios –save 3、直接利用cdn引…</p>
+<p> kuangshp128 kuangshp128</p>
+<p>2017-08-19 22:12:08</p>
+<p>阅读数：6603</p>
+<p>vue cli+axios踩坑记录+拦截器使用，代理跨域proxy（更新）<br>1、首先axios不支持vue.use()方式声明使用，看了所有近乎相同的axios文档都没有提到这一点 建议方式在main.js中如下声明使用 import axios from ‘axios’;…</p>
+<p> u012369271 u012369271</p>
+<p>2017-06-02 21:48:29</p>
+<p>阅读数：42986</p>
+<p>vue项目中，使用axios跨域处理<br>vue使用axios解决跨域问题</p>
+<p> HUSHILIN001 HUSHILIN001</p>
+<p>2017-08-10 10:14:37</p>
+<p>阅读数：29508</p>
+<p>vue2.0之axios使用详解(一)<br>axios 基于 Promise 的 HTTP 请求客户端，可同时在浏览器和 node.js 中使用 功能特性 在浏览器中发送 XMLHttpRequests 请求在 node.js 中发送 h…</p>
+<p> binginsist binginsist</p>
+<p>2017-03-24 14:39:33</p>
+<p>阅读数：124112</p>
+<p>处理vue中使用Axios调用接口时出现的ie数据处理问题<br>处理vue中使用Axios调用接口时出现的ie数据处理问题</p>
+<p> EastRiseJi EastRiseJi</p>
+<p>2017-06-21 16:24:56</p>
+<p>阅读数：2259</p>
+<p>【vue+axios】一个项目学会前端实现登录拦截<br>一个项目学会前端实现登录拦截 一个项目学会vue全家桶+axios实现登录、拦截、登出功能，以及利用axios的http拦截器拦截请求和响应。 前言该项目是利用了Github 提供的persona…</p>
+<p> qq673318522 qq673318522</p>
+<p>2017-02-17 12:03:43</p>
+<p>阅读数：32703</p>
+<p>Vue项目实战（五）配置 Axios api 接口调用文件<br>Vue项目实战（五）配置 Axios api 接口调用文件 这一篇介绍v配置 Axios api 接口调用文件，公众号已经准备了vue实战教程，如果您有需要，可以在公众号回复“vue”获取。 …</p>
+<p> huangshulang1234 huangshulang1234</p>
+<p>2018-01-08 09:35:07</p>
+<p>阅读数：831</p>
+<p>关于vue项目中，axios请求方式，跨域请求的处理<br>关于vue 项目中 跨域请求的处理，axios请求方式</p>
+<p> suweim suweim</p>
+<p>2017-06-28 09:30:26</p>
+<p>阅读数：24684</p>
+<p>（五）配置 Axios api 接口调用文件<br>Vue2+VueRouter2+Webpack+Axios 构建项目实战2017重制版（五）配置 Axios api 接口调用文件前情回顾在上一篇《Vue2+VueRouter2+Webpack+Ax…</p>
+<p> zxy9602 zxy9602</p>
+<p>2018-03-04 21:17:59</p>
+<p>阅读数：572</p>
+<p>详讲：vue2+vuex+axios<br>在vue2项目中，组件间相互传值或者后台获取的数据需要供多个组件使用的情况很多的情况下（后台获取数据存入vuex，组件之间共享数据），那么就需要用vuex来管理这些。 整个的流程是在组件的create…</p>
+<p> zhaohaixin0418 zhaohaixin0418</p>
+<p>2017-03-30 17:48:29</p>
+<p>阅读数：17395</p>
+<p>vue axios 二次封装<br>这段时间告诉项目需要，用到了vue。 刚开始搭框架的时候用的是vue-resource后面看到官方推荐axios就换过来了 顺便封装了一下  定义公共参数与引入组件： import axios fr…</p>
+<p> qq_28027903 qq_28027903</p>
+<p>2017-08-28 14:35:27</p>
+<p>阅读数：12560</p>
+<p>个人资料</p>
+<p>FungLeo</p>
+<p> 博客专家</p>
+<p>关注<br>原创<br>222<br>粉丝<br>1300<br>喜欢<br>756<br>评论<br>1131<br>等级： 访问： 154万+ 积分： 1万+ 排名： 1107<br>勋章：</p>
+<p>友情链接<br>黄金喊单<br>FengCMS的微博<br>FengCMS网站内容管理系统<br>地方网络工作室<br>慕课网——免费视频学习教程<br>RunJS 免费分享前端代码<br>Bootstrap 前端开发框架中文网<br>jQuery API 中文文档<br>Mysql 下载地址<br>MAC 开发配置<br>言墨儿的博客<br>站长统计站长统计站长统计<br>最新文章<br>利用 github 和 python3 以及 MWeb 打造自己的博文图床<br>curl 模拟 GET\POST 请求，以及 curl post 上传文件<br>Python3 初学实践案例（14）打造一个私人图床服务器<br>javascript 寻找当前页面中最大的 z-index 值的方法<br>写在 Smartisan R1 &amp; TNT 发布之后<br>博主专栏</p>
+<p>FungLeo的前端笔记</p>
+<p>阅读量：1347143183 篇</p>
+<p>FungLeo的前端工具</p>
+<p>阅读量：10454924 篇</p>
+<p>黑苹果&amp;前端工程师</p>
+<p>阅读量：19642839 篇</p>
+<p>vue+webpack+axios 入门教程</p>
+<p>阅读量：26282320 篇</p>
+<p>Deepin Linux &amp; 前端工程师</p>
+<p>阅读量：3865519 篇</p>
+<p>和 FungLeo 一起学 Python</p>
+<p>阅读量：1241916 篇<br>展开</p>
+<p>个人分类<br>HTML&amp;CSS 55篇<br>JavaScript 57篇<br>jQuery 28篇<br>vuejs 35篇<br>python3 16篇<br>golang 1篇<br>Linux&amp;CentOS 51篇<br>Tools 54篇<br>seo 1篇<br>other 17篇<br>Linux&amp;CentOS 2篇<br>展开</p>
+<p>归档<br>2018年6月 4篇<br>2018年5月 1篇<br>2018年4月 2篇<br>2018年2月 1篇<br>2018年1月 3篇<br>2017年12月 15篇<br>2017年11月 21篇<br>2017年10月 4篇<br>2017年9月 12篇<br>2017年8月 27篇<br>2017年7月 1篇<br>2017年6月 5篇<br>2017年5月 10篇<br>2017年3月 3篇<br>2017年2月 20篇<br>2017年1月 7篇<br>2016年11月 10篇<br>2016年9月 1篇<br>2016年8月 4篇<br>2016年7月 1篇<br>2016年6月 11篇<br>2016年5月 9篇<br>2016年4月 3篇<br>2016年3月 18篇<br>2016年1月 3篇<br>2015年12月 7篇<br>2015年11月 17篇<br>2015年10月 9篇<br>2015年9月 26篇<br>2015年8月 7篇<br>展开</p>
+<p>热门文章<br>Vue2+VueRouter2+webpack 构建项目实战（一）准备工作<br>阅读量：58462</p>
+<p>Vue2+VueRouter2+webpack 构建项目实战（二）目录以及文件结构<br>阅读量：45842</p>
+<p>javascript 数组以及对象的深拷贝（复制数组或复制对象）的方法<br>阅读量：42420</p>
+<p>Vue2+VueRouter2+webpack 构建项目实战（三）配置路由，整俩页面先<br>阅读量：33258</p>
+<p>VUE 利用 webpack 给生产环境和发布环境配置不同的接口地址<br>阅读量：31415</p>
+<p>最新评论<br>Vue2+VueRouter2+W…<br>qq_31080353：流程讲的非常到位 很赞的一个demo。 我有个问题，就是点击列表进入详情 怎么总是报这个错？vu…</p>
+<p>打造前端 Deepin Linux…<br>FungLeo：[reply]lzihua[/reply] 目前我司前端全部使用 deepin 作为开发环境。目前…</p>
+<p>Vue2+VueRouter2+W…<br>HandsomestLiu：[reply]weixin_40692794[/reply] 你的代码还报504的错误吗？我的今天…</p>
+<p>解决因为手机设置字体大小导致h5页…<br>FlippdeU：[reply]FlippdeU[/reply] webview.getSettings().set…</p>
+<p>解决因为手机设置字体大小导致h5页…<br>FlippdeU：请问下是加到哪里的呢？我不知道到该去哪里获取webview实例</p>
+<p>原文首发地址：<a href="http://blog.csdn.net/fungleo/article/details/53171614" target="_blank" rel="noopener">http://blog.csdn.net/fungleo/article/details/53171614</a></p>
+
+      
+      
+        <div class="page-reward">
+          <p><a href="javascript:void(0)" onclick="dashangToggle()" class="dashang">赏</a></p>
+          <div class="hide_box"></div>
+          <div class="shang_box">
+            <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+            <div class="shang_tit">
+              <p>纯属好玩</p>
+            </div>
+            <div class="shang_payimg">
+              <img src="/img/alipayimg.jpg" alt="扫码支持" title="扫一扫" />
+            </div>
+              <div class="pay_explain">扫码打赏</div>
+            <div class="shang_payselect">
+              
+                <div class="pay_item checked" data-id="alipay">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/alipay.png" alt="支付宝" /></span>
+                </div>
+              
+              
+                <div class="pay_item" data-id="wechat">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/weixin.png" alt="微信" /></span>
+                </div>
+              
+            </div>
+            <div class="shang_info">
+              <p>打开<span id="shang_pay_txt">支付宝</span>扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+        <script type="text/javascript">
+          $(".pay_item").click(function(){
+            $(this).addClass('checked').siblings('.pay_item').removeClass('checked');
+            var dataid=$(this).attr('data-id');
+            $(".shang_payimg img").attr("src","/img/"+dataid+"img.jpg");
+            $("#shang_pay_txt").text(dataid=="alipay"?"支付宝":"微信");
+          });
+          function dashangToggle(){
+            
+            $(".hide_box").fadeToggle();
+            $(".shang_box").fadeToggle();
+          }
+        </script>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2018/06/20/vue5/">Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（五）配置 Axios api 接口调用文件</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 心动CCC 的个人博客">心动CCC</a></p>
+        <p><span>发布时间:</span>2018年06月20日 - 17时35分</p>
+        <p><span>最后更新:</span>2018年06月18日 - 02时15分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/06/20/vue5/" title="Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（五）配置 Axios api 接口调用文件">http://yoursite.com/2018/06/20/vue5/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/06/20/vue5/　　作者: 心动CCC" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a href="/2018/06/21/vue6/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（六）将接口用 webpack 代理到本地
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/06/19/vue4/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（四）调整 App.vue 和 router 路由</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#封装-axios-工具，编辑-src-api-index-js-文件"><span class="toc-number">1.</span> <span class="toc-text">封装 axios 工具，编辑 src/api/index.js 文件</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#npm-install-axios-D"><span class="toc-number">1.0.0.0.1.</span> <span class="toc-text">npm install axios -D</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2017年10月20日补充，删除了评论中有人反映会出错的-return-，确实这个-return-是没有什么作用的。不过我这边确实没出错。没关系啦，本来就没啥用，只是一个以前的不好的习惯代码。"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">2017年10月20日补充，删除了评论中有人反映会出错的 return ，确实这个 return 是没有什么作用的。不过我这边确实没出错。没关系啦，本来就没啥用，只是一个以前的不好的习惯代码。</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#调整-main-js-绑定-api-index-js-文件"><span class="toc-number">2.</span> <span class="toc-text">调整 main.js 绑定 api/index.js 文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#测试一下看看能不能调通"><span class="toc-number">3.</span> <span class="toc-text">测试一下看看能不能调通</span></a></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+        <div id="gitments"></div>
+<script src="/js/gitment.browser.js"></script>
+<script>
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      owner: 'yjx-show',
+      repo: 'yjx-show.github.io',
+      oauth: {
+        client_id: '637964a4506d86e3b0cf',
+        client_secret: 'e4200cca59e5de9a2cd78c53fbe1a7c37157e9a0',
+      },
+    })
+    gitment.render('gitments')
+</script>
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2018/06/21/vue6/" title="上一篇: Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（六）将接口用 webpack 代理到本地">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2018/06/19/vue4/" title="下一篇: Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（四）调整 App.vue 和 router 路由">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/06/25/vue10/">Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（十）打包项目并发布到子目录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/24/vue9/">Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（九）再把内容页面渲染出来</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/23/vue8/">Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（八）渲染一个列表出来先</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/22/vue7/">Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（七）初识 *.vue 文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/21/vue6/">Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（六）将接口用 webpack 代理到本地</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/20/vue5/">Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（五）配置 Axios api 接口调用文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/19/vue4/">Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（四）调整 App.vue 和 router 路由</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/18/vue3/">Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（三）认识项目所有文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/17/vue2/">Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（二）安装 nodejs 环境以及 vue-cli 构建初始项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/16/vue1/">Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（一）基础知识概述</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/13/spring框架/">Spring框架</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/10/hibernate注解详解/">Hibernate注解详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/10/Hibernate (HQL操作)/">Hibernate (HQL操作)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/08/struts2框架核心技术总结/">Struts2框架</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2018 心动CCC
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/yjx-show/yjx-show.github.io" target="_blank">心动CCC</a> by 心动CCC
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >心心到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 24;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>
