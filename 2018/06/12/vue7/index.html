@@ -5,20 +5,20 @@
   
   <title>Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（七）初识 *.vue 文件 | 心动CCC</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（七）初识 *.vue 文件：  前情回顾https://yjx-show.github.io/2018/06/21/vue6/在上一篇文章 Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（六）将接口用 webpack 代理到本地 中，我们顺利的将接口代理到了本地。需要说明的是， c">
+  <meta name="description" content="Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（七）初识 *.vue 文件：  前情回顾https://yjx-show.github.io/2018/06/11/vue6/在上一篇文章 Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（六）将接口用 webpack 代理到本地 中，我们顺利的将接口代理到了本地。需要说明的是， c">
 <meta name="keywords" content="前端框架">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（七）初识 *.vue 文件">
 <meta property="og:url" content="http://yoursite.com/2018/06/12/vue7/index.html">
 <meta property="og:site_name" content="心动CCC">
-<meta property="og:description" content="Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（七）初识 *.vue 文件：  前情回顾https://yjx-show.github.io/2018/06/21/vue6/在上一篇文章 Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（六）将接口用 webpack 代理到本地 中，我们顺利的将接口代理到了本地。需要说明的是， c">
+<meta property="og:description" content="Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（七）初识 *.vue 文件：  前情回顾https://yjx-show.github.io/2018/06/11/vue6/在上一篇文章 Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（六）将接口用 webpack 代理到本地 中，我们顺利的将接口代理到了本地。需要说明的是， c">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2018/06/12/vue7/vue7.1.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/06/12/vue7/vue7.2.jpg">
-<meta property="og:updated_time" content="2018-06-18T02:48:01.675Z">
+<meta property="og:updated_time" content="2018-06-18T03:11:21.726Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（七）初识 *.vue 文件">
-<meta name="twitter:description" content="Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（七）初识 *.vue 文件：  前情回顾https://yjx-show.github.io/2018/06/21/vue6/在上一篇文章 Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（六）将接口用 webpack 代理到本地 中，我们顺利的将接口代理到了本地。需要说明的是， c">
+<meta name="twitter:description" content="Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（七）初识 *.vue 文件：  前情回顾https://yjx-show.github.io/2018/06/11/vue6/在上一篇文章 Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（六）将接口用 webpack 代理到本地 中，我们顺利的将接口代理到了本地。需要说明的是， c">
 <meta name="twitter:image" content="http://yoursite.com/2018/06/12/vue7/vue7.1.jpg">
   
     <link rel="alternative" href="/atom.xml" title="心动CCC" type="application/atom+xml">
@@ -258,7 +258,7 @@
       
           
         <p><strong> Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（七）初识 *.vue 文件：</strong> <excerpt in="" index="" |="" 首页摘要=""></excerpt></p>
-<p>前情回顾<br><a href="https://yjx-show.github.io/2018/06/21/vue6/" target="_blank" rel="noopener">https://yjx-show.github.io/2018/06/21/vue6/</a><br>在上一篇文章 Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（六）将接口用 webpack 代理到本地 中，我们顺利的将接口代理到了本地。需要说明的是， cnodejs.org 的这套接口是没有跨域问题的，也就是说，本来我们是不需要代理到本地的。但是我们在实际的工作开发中，接口基本上是有跨域问题的，所以我们需要利用代理的方式来解决问题。</p>
+<p>前情回顾<br><a href="https://yjx-show.github.io/2018/06/11/vue6/" target="_blank" rel="noopener">https://yjx-show.github.io/2018/06/11/vue6/</a><br>在上一篇文章 Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（六）将接口用 webpack 代理到本地 中，我们顺利的将接口代理到了本地。需要说明的是， cnodejs.org 的这套接口是没有跨域问题的，也就是说，本来我们是不需要代理到本地的。但是我们在实际的工作开发中，接口基本上是有跨域问题的，所以我们需要利用代理的方式来解决问题。</p>
 <p>在前面的数篇文章中，我们做了很多的工作，又是干这个，又是干那个的，但一直没有切入到正题，那就是我们要做的工作呢，我们要开发的代码呢。这一篇博文开始，我们要来开发代码了。</p>
 <a id="more"></a>
 <p><the rest="" of="" contents="" |="" 余下全文=""><br>正文……</the></p>
@@ -335,7 +335,7 @@
         <p><span>本文标题:</span><a href="/2018/06/12/vue7/">Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（七）初识 *.vue 文件</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 心动CCC 的个人博客">心动CCC</a></p>
         <p><span>发布时间:</span>2018年06月12日 - 17时35分</p>
-        <p><span>最后更新:</span>2018年06月18日 - 10时48分</p>
+        <p><span>最后更新:</span>2018年06月18日 - 11时11分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/06/12/vue7/" title="Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（七）初识 *.vue 文件">http://yoursite.com/2018/06/12/vue7/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/06/12/vue7/　　作者: 心动CCC" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
