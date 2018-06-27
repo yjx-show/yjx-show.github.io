@@ -18,7 +18,9 @@
 <meta property="og:image" content="http://yoursite.com/2018/06/16/vue11/vue跨域1.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/06/16/vue11/vue跨域2.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/06/16/vue11/vue跨域3.jpg">
-<meta property="og:updated_time" content="2018-06-18T16:58:16.417Z">
+<meta property="og:image" content="http://yoursite.com/2018/06/16/vue11/vue跨域5.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/06/16/vue11/vue跨域4.jpg">
+<meta property="og:updated_time" content="2018-06-19T01:39:51.423Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（十一）idea运行vue项目(解决前后端分离跨域问题)">
 <meta name="twitter:description" content="Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（十一）idea运行vue项目(解决前后端分离跨域问题)：  idea运行vue项目(File - Settings - Languages&amp;amp;Frameworks - JavaScript：修改JavaScript language version为ECMAScript6，确认 File - Settings">
@@ -146,7 +148,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/Hibernate-HQL操作/" style="font-size: 10px;">Hibernate (HQL操作)</a> <a href="/tags/Hibernate注解详解/" style="font-size: 10px;">Hibernate注解详解</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/Struts2/" style="font-size: 10px;">Struts2</a> <a href="/tags/Vue/" style="font-size: 20px;">Vue</a>
+                        <a href="/tags/Hibernate/" style="font-size: 15px;">Hibernate</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/Struts2/" style="font-size: 10px;">Struts2</a> <a href="/tags/Vue/" style="font-size: 20px;">Vue</a> <a href="/tags/ssh框架整合/" style="font-size: 15px;">ssh框架整合</a>
                     </div>
                 </section>
                 
@@ -291,6 +293,8 @@
 })
 </code></pre>
 <p><img src="/2018/06/16/vue11/vue跨域3.jpg" alt="vue跨域3"></p>
+<h2 id="注意-第四步用build打包的时候会出现访问路径出错报404"><a href="#注意-第四步用build打包的时候会出现访问路径出错报404" class="headerlink" title="(注意)  第四步用build打包的时候会出现访问路径出错报404"></a>(注意)  第四步用build打包的时候会出现访问路径出错报404</h2><h4 id="开发的时候由后端人员给前端一个根路径即可-保持此节博客中的-agent-都是一致即可-agent可以修改成任意字符串"><a href="#开发的时候由后端人员给前端一个根路径即可-保持此节博客中的-agent-都是一致即可-agent可以修改成任意字符串" class="headerlink" title="开发的时候由后端人员给前端一个根路径即可(保持此节博客中的 agent 都是一致即可,agent可以修改成任意字符串)"></a>开发的时候由后端人员给前端一个根路径即可(保持此节博客中的 agent 都是一致即可,agent可以修改成任意字符串)</h4><p>先在服务器端(后端服务器中)查看项目路径<br>查看如图<br><img src="/2018/06/16/vue11/vue跨域5.jpg" alt="vue跨域5"></p>
+<p>然后在vue脚手架(前端服务器中)中找到config/index.js<br>查看如图(将其修改,注意其他导入的此也要改)<br><img src="/2018/06/16/vue11/vue跨域4.jpg" alt="vue跨域4"></p>
 
       
       
@@ -349,7 +353,7 @@
         <p><span>本文标题:</span><a href="/2018/06/16/vue11/">Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（十一）idea运行vue项目(解决前后端分离跨域问题)</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 心动CCC 的个人博客">心动CCC</a></p>
         <p><span>发布时间:</span>2018年06月16日 - 17时35分</p>
-        <p><span>最后更新:</span>2018年06月19日 - 00时58分</p>
+        <p><span>最后更新:</span>2018年06月19日 - 09时39分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/06/16/vue11/" title="Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（十一）idea运行vue项目(解决前后端分离跨域问题)">http://yoursite.com/2018/06/16/vue11/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/06/16/vue11/　　作者: 心动CCC" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -365,6 +369,15 @@
 
 <nav id="article-nav">
   
+    <a href="/2018/06/19/ssh框架整合xml版本/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          ssh框架整合xml版本
+        
+      </div>
+    </a>
+  
   
     <a href="/2018/06/15/vue10/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（十）打包项目并发布到子目录</div>
@@ -378,7 +391,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#idea运行vue项目"><span class="toc-number">1.</span> <span class="toc-text">idea运行vue项目(</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#继续点击加号，选择npm，Name为Build，package-json选择你工程中的package-json，Command为run，Scripts为build-然后就可以直接在idea中打包了"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">继续点击加号，选择npm，Name为Build，package.json选择你工程中的package.json，Command为run，Scripts为build,然后就可以直接在idea中打包了</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Vue2-Axios-解决跨域问题"><span class="toc-number">2.</span> <span class="toc-text">Vue2+Axios 解决跨域问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#vue脚手架中找到config-index-js文件"><span class="toc-number">2.0.0.1.</span> <span class="toc-text">vue脚手架中找到config/index.js文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#第一步将"><span class="toc-number">2.0.0.2.</span> <span class="toc-text">第一步将</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#第二步在main-js中添加一句代码放在最上面"><span class="toc-number">2.0.0.3.</span> <span class="toc-text">第二步在main.js中添加一句代码放在最上面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#第三步调用"><span class="toc-number">2.0.0.4.</span> <span class="toc-text">第三步调用</span></a></li></ol></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#idea运行vue项目"><span class="toc-number">1.</span> <span class="toc-text">idea运行vue项目(</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#继续点击加号，选择npm，Name为Build，package-json选择你工程中的package-json，Command为run，Scripts为build-然后就可以直接在idea中打包了"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">继续点击加号，选择npm，Name为Build，package.json选择你工程中的package.json，Command为run，Scripts为build,然后就可以直接在idea中打包了</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Vue2-Axios-解决跨域问题"><span class="toc-number">2.</span> <span class="toc-text">Vue2+Axios 解决跨域问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#vue脚手架中找到config-index-js文件"><span class="toc-number">2.0.0.1.</span> <span class="toc-text">vue脚手架中找到config/index.js文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#第一步将"><span class="toc-number">2.0.0.2.</span> <span class="toc-text">第一步将</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#第二步在main-js中添加一句代码放在最上面"><span class="toc-number">2.0.0.3.</span> <span class="toc-text">第二步在main.js中添加一句代码放在最上面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#第三步调用"><span class="toc-number">2.0.0.4.</span> <span class="toc-text">第三步调用</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意-第四步用build打包的时候会出现访问路径出错报404"><span class="toc-number">2.1.</span> <span class="toc-text">(注意)  第四步用build打包的时候会出现访问路径出错报404</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#开发的时候由后端人员给前端一个根路径即可-保持此节博客中的-agent-都是一致即可-agent可以修改成任意字符串"><span class="toc-number">2.1.0.1.</span> <span class="toc-text">开发的时候由后端人员给前端一个根路径即可(保持此节博客中的 agent 都是一致即可,agent可以修改成任意字符串)</span></a></li></ol></li></ol></li></ol></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -444,7 +457,9 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/2018/06/19/ssh框架整合xml版本/" title="上一篇: ssh框架整合xml版本">
+                <i class="fa fa-angle-left"></i>
+            </a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
@@ -453,7 +468,7 @@
             </a>
         
     </div>
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/06/16/vue11/">Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（十一）idea运行vue项目(解决前后端分离跨域问题)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/15/vue10/">Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（十）打包项目并发布到子目录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/14/vue9/">Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（九）再把内容页面渲染出来</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/13/spring框架/">Spring框架</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/13/vue8/">Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（八）渲染一个列表出来先</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/12/vue7/">Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（七）初识 *.vue 文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/11/vue6/">Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（六）将接口用 webpack 代理到本地</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/10/hibernate注解详解/">Hibernate注解详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/10/Hibernate (HQL操作)/">Hibernate (HQL操作)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/10/vue5/">Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（五）配置 Axios api 接口调用文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/09/vue4/">Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（四）调整 App.vue 和 router 路由</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/08/struts2框架核心技术总结/">Struts2框架</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/08/vue3/">Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（三）认识项目所有文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/07/vue2/">Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（二）安装 nodejs 环境以及 vue-cli 构建初始项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/06/vue1/">Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（一）基础知识概述</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/06/20/ssh框架整合注解版/">ssh框架整合注解版本</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/19/ssh框架整合xml版本/">ssh框架整合xml版本</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/16/vue11/">Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（十一）idea运行vue项目(解决前后端分离跨域问题)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/15/vue10/">Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（十）打包项目并发布到子目录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/14/vue9/">Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（九）再把内容页面渲染出来</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/13/spring框架/">Spring框架</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/13/vue8/">Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（八）渲染一个列表出来先</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/12/vue7/">Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（七）初识 *.vue 文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/11/vue6/">Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（六）将接口用 webpack 代理到本地</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/10/hibernate注解详解/">Hibernate注解详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/10/Hibernate (HQL操作)/">Hibernate (HQL操作)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/10/vue5/">Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（五）配置 Axios api 接口调用文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/09/vue4/">Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（四）调整 App.vue 和 router 路由</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/08/vue3/">Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（三）认识项目所有文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/08/struts2框架核心技术总结/">Struts2框架</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/07/vue2/">Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（二）安装 nodejs 环境以及 vue-cli 构建初始项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/06/vue1/">Vue2+VueRouter2+Webpack+Axios 构建项目实战2017（一）基础知识概述</a></li></ul>
     <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
     <script>
         $(".post-list").addClass("toc-article");
