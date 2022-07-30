@@ -1,0 +1,301 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+./yjx-h5/dist
+.idea
+*.iml
+out
+gen
+tpid
+log.path_IS_UNDEFINED
+.idea/.name
+.idea/checkstyle-idea.xml
+.idea/compiler.xml
+.idea/encodings.xml
+.idea/inspectionProfiles/
+.idea/jarRepositories.xml
+.idea/libraries/
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+*.lst
+business-service/business-service-base/business-service-base.iml
+business-service/business-service-electric/business-service-electric.iml
+business-service/business-service-nm/business-service-nm.iml
+business-service/business-service-order/business-service-order.iml
+business-service/business-service-pay/business-service-pay.iml
+business-service/business-service-sys/business-service-sys.iml
+business-service/business-service-user/business-service-user.iml
+business-service/business-service.iml
+common-api/common-api.iml
+common-client/common-client-nmm/common-client-nmm.iml
+common-client/common-client.iml
+common-service/common-service.iml
+common-service/nacos/bin/work/
+common-service/nacos/data/naming/data/
+common-service/nacos/data/
+common-service/nacos/logs
+hq-project.iml
+web-service/web-service-nmm/web-service-nmm.iml
+web-service/web-service.iml
+*.log
+*/targter/
+
+### nacos ###
+/common-service/nacos1.4.2/data
+/common-service/nacos1.4.2/logs
+*.out
+
+### xxl ###
+#/common-service/xxl-job-2.3.0/xxl-job-admin/xxl-job-admin-2.3.0.jar
+#/common-service/xxl-job-2.3.0/xxl-job-admin/*.sh
+/common-service/xxl-job-2.3.0/xxl-job-admin/*.out
+/common-service/xxl-job-2.3.0/xxl-job-admin/tpid
+/common-service/xxl-job-2.3.0/xxl-job-admin/log.path_IS_UNDEFINED
+
+### STS ###
+.settings/
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+### IntelliJ IDEA ###
+*.iws
+*.ipr
+rebel.xml
+.mvn/
+mvnw
+mvnw.cmd
+
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+### maven ###
+target/
+*.war
+*.ear
+*.zip
+*.tar
+*.tar.gz
+/common-service/startMac.sh
+
+### logs ####
+/logs/
+
+### temp ignore ###
+*.cache
+*.diff
+*.patch
+*.tmp
+*.java~
+*.properties~
+*.xml~
+
+### system ignore ###
+.DS_Store
+*.DS_Store
+Thumbs.db
+Servers
+.metadata
+gen_code
+HELP.md
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**
+!**/src/test/**
+
+.sts4-cache
+
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+### Docker Test Credentials ###
+#.env
+
+### K8s Credentials
+k8s/test/config/config.yaml
+k8s/prod/config/config.yaml
+k8s/uat/config/config.yaml
+
+/yjx-h5/node_modules
+/yjx-media-server-pc/node_modules
+
+# Node rules:
+## Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
+.grunt
+
+## Dependency directory
+## Commenting this out is preferred by some people, see
+## https://docs.npmjs.com/misc/faq#should-i-check-my-node_modules-folder-into-git
+node_modules
+
+# Book build output
+_book
+
+# git push scripts
+zxPush
+zxPushDev
+zxPull
+
+# eBook build output
+*.epub
+*.mobi
+*.pdf
+.vsnode_modules/
+
+# Miscellaneous
+*.class
+*.pyc
+*.swp
+*.lock
+.atom/
+.buildlog/
+.history
+.svn/
+pubspec.lock
+
+# IntelliJ related
+.idea/
+
+# The .vscode folder contains launch configuration and tasks you configure in
+# VS Code which you may wish to be included in version control, so this line
+# is commented out by default.
+#.vscode/
+
+# Flutter/Dart/Pub related
+**/doc/api/
+.dart_tool/
+.flutter-plugins
+.packages
+.pub-cache/
+.pub/
+/build/
+
+# Android related
+**/android/**/gradle-wrapper.jar
+**/android/.gradle
+**/android/captures/
+**/android/gradlew
+**/android/gradlew.bat
+**/android/local.properties
+**/android/**/GeneratedPluginRegistrant.java
+
+# iOS/XCode related
+**/ios/**/*.mode1v3
+**/ios/**/*.mode2v3
+**/ios/**/*.moved-aside
+**/ios/**/*.pbxuser
+**/ios/**/*.perspectivev3
+**/ios/**/*sync/
+**/ios/**/.sconsign.dblite
+**/ios/**/.tags*
+**/ios/**/.vagrant/
+**/ios/**/DerivedData/
+**/ios/**/Icon?
+**/ios/**/Pods/
+**/ios/**/.symlinks/
+**/ios/**/profile
+**/ios/**/xcuserdata
+**/ios/.generated/
+**/ios/Flutter/App.framework
+**/ios/Flutter/Flutter.framework
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/app.flx
+**/ios/Flutter/app.zip
+**/ios/Flutter/flutter_assets/
+**/ios/Flutter/flutter_export_environment.sh
+**/ios/ServiceDefinitions.json
+**/ios/Runner/GeneratedPluginRegistrant.*
+
+# Exceptions to above rules.
+!**/ios/**/default.mode1v3
+!**/ios/**/default.mode2v3
+!**/ios/**/default.pbxuser
+!**/ios/**/default.perspectivev3
+!/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
+
+# The .vscode folder contains launch configuration and tasks you configure in
+# VS Code which you may wish to be included in version control, so this line
+# is commented out by default.
+#.vscode/
+
+**/ios/Flutter/.last_build_id
+.flutter-plugins-dependencies
+# Web related
+lib/generated_plugin_registrant.dart
+
+# Symbolication related
+app.*.symbols
+
+# Obfuscation related
+app.*.map.json
+
+# Android Studio will place build artifacts here
+/android/app/debug
+/android/app/profile
+/android/app/release
+
+# Compiled class file
+# Log file
+logs/*
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+src/main/resources/application-*.yml
+# Package Files #
+#*.jar
+*.nar
+*.rar
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+/.idea/*
+/target/*
+/.idea/
+/target/
+
+/src/main/resources/static/
+
+
+node_modules/
+# dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+**/*.log
+
+tests/**/coverage/
+tests/e2e/reports
+selenium-debug.log
+
+# Editor directories and files
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.local
+
+package-lock.json
+yarn.lock
+
+.gradle
